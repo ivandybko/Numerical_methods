@@ -1,0 +1,38 @@
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[russian]{babel}
+\usepackage[oglav,spisok,boldsect,eqwhole,figwhole,hyperref,hyperprint,remarks,greekit]{./style/fn2kursstyle}
+\usepackage{tikz}
+\graphicspath{{./style/}{./figures/}}
+
+\usepackage{multirow}
+\usepackage{supertabular}
+\usepackage{multicol}
+\usepackage{mathtools}
+% Параметры титульного листа
+\title{Прямые методы решения систем
+	линейных алгебраических уравнений}
+\lab{1}
+\author{И.\,Е.~Дыбко}
+\creator{С.\,И.~Тихомиров}
+\supervisor{А.\,О.~Гусев}
+\group{ФН2-51Б}
+\date{2024}
+
+% Переопределение команды \vec, чтобы векторы печатались полужирным курсивом
+\renewcommand{\vec}[1]{\text{\mathversion{bold}${#1}$}}%{\bi{#1}}
+\newcommand\thh[1]{\text{\mathversion{bold}${#1}$}}
+%Переопределение команды нумерации перечней: точки заменяются на скобки
+\renewcommand{\labelenumi}{\theenumi)}
+\begin{document}
+	
+	\maketitle
+	
+	\tableofcontents
+	
+	
+	
+\end{document} 
