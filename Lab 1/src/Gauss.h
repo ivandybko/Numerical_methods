@@ -13,6 +13,15 @@ std::vector<T> Gauss(const std::pair<std::vector<std::vector<T>>, std::vector<T>
 	std::vector<std::vector<T>> C(n, std::vector<T>(n));
 	for (size_t i = 0; i < n-1; ++i)
 	{
+		if (A[i][i] == 0){
+			T max{-std::numeric_limits<T>::max()};
+			size_t max_k = i;
+			for (size_t k=i+1; k < n; ++k){
+				if (A[i][k] > max){max=A[i][k]; max_k=k;}
+			}
+			std::swap(A[i], A[max_k]);
+			std::swap(b[i], b[max_k]);
+		}
 		y[i]=b[i]/A[i][i];
 		for (size_t j = i+1; j < n ; ++j)
 		{
