@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
-#include <utility>
+#include <memory>
+#include <algorithm>
 #include "Gauss.h"
 #include "QR decomposition.h"
 template <typename T>
@@ -58,26 +60,57 @@ int main(){
 	std::cout << "Введите путь к директории: ";
 	std::string path;
 	std::cin >> path;
-	auto data = *readData<float>(path);
-	auto x_gauss = Gauss(data);
-	auto solution= readSolution<float>(path);
-	std::cout << "Решение методом Гаусса:\n { " ;
-	for (auto element : x_gauss){
-		std::cout << element << " ";
-	}
-	std::cout << "}\n";
-	if (solution[0] !=0){
-		if (x_gauss == solution){
+	std::cout << "Решение во float:\n";
+	auto data_f = *readData<float>(path);
+	auto x_gauss_f = Gauss<float>(data_f);
+	auto solution_f= readSolution<float>(path);
+	if (!x_gauss_f.empty()){
+		std::cout << "Решение методом Гаусса:\n { " ;
+		for (auto element : x_gauss_f){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		if (x_gauss_f == solution_f){
 			std::cout << "Решение методом Гаусса найдено верно";
 		}
 		else{
 			std::cerr << "Решение методом Гаусса найдено неверно";
 			std::cout << "Истинное решение:\n { " ;
-			for (auto element : solution){
+			for (auto element : solution_f){
 				std::cout << element <<" ";
 			}
 			std::cout << "}\n";
 		}
 	}
+	else{
+		std::cerr << "Решения не существует или оно не единственно";
+	}
+	auto x_QR = QRdecompostition(data_f);
+	std::cout << "Решение в double:\n";
+	auto data_d = *readData<double>(path);
+	auto x_gauss_d = Gauss<double>(data_d);
+	auto solution_d= readSolution<double>(path);
+	if (!x_gauss_d.empty()){
+		std::cout << "Решение методом Гаусса:\n { " ;
+		for (auto element : x_gauss_d){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		if (x_gauss_d == solution_d){
+			std::cout << "Решение методом Гаусса найдено верно";
+		}
+		else{
+			std::cerr << "Решение методом Гаусса найдено неверно";
+			std::cout << "Истинное решение:\n { " ;
+			for (auto element : solution_d){
+				std::cout << element <<" ";
+			}
+			std::cout << "}\n";
+		}
+	}
+	else{
+		std::cerr << "Решения не существует или оно не единственно";
+	}
+	auto x_QR_d = QRdecompostition(data_d);
 	return 0;
 }
