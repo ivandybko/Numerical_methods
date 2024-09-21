@@ -4,27 +4,7 @@
 #include <vector>
 #include <utility>
 #include <cmath>
-template <typename T>
-void transpose(std::vector<std::vector<T>>& A) {
-	size_t n = A.size();
-	for (int i = 0; i < n; ++i) {
-		for (int j = i + 1; j < n; ++j) {
-			std::swap(A[i][j], A[j][i]);
-		}
-	}
-}
-template <typename T>
-void multiply(const std::vector<std::vector<T>>& A, const std::vector<std::vector<T>>& B, std::vector<std::vector<T>>& res) {
-	size_t n = A.size();
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n; ++j) {
-			for (int k = 0; k < n; ++k) {
-				res[i][j] += A[i][k] * B[k][j];
-			}
-		}
-	}
-}
-
+#include "matrix_operations.h"
 template <typename T>
 void rotate(std::vector<std::vector<T>>& transit, std::vector<std::vector<T>>& A, int i, int j) {
 	T c = A[i][i]/std::sqrt(A[i][i]*A[i][i]+A[j][i]*A[j][i]);

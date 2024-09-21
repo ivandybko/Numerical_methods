@@ -6,8 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(src)
 
 add_executable(Lab_1
-        Gauss.cpp
         Gauss.h
         main.cpp
-        "QR decomposition.cpp"
-        "QR decomposition.h")
+        "QR decomposition.h"
+        matrix_operations.h)

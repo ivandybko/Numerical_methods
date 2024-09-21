@@ -6,7 +6,7 @@
 #include "Gauss.h"
 #include "QR decomposition.h"
 template <typename T>
-	std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<T>>> readData(const std::string& path) {
+std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<T>>> readData(const std::string& path) {
 	auto data = std::make_unique<std::pair<std::vector<std::vector<T>>, std::vector<T>>>();
 	std::vector<std::vector<T>>& matrix = data->first;
 	std::vector<T>& vector = data->second;
@@ -55,7 +55,7 @@ std::vector<T> readSolution(const std::string& path) {
 	return solution;
 }
 template <typename T>
-std::pair<T,T> discrepancy(const std::vector<std::vector<T>>& A, const std::vector<T> & b_true, const std::vector<T> &x){
+std::pair<T,T> residual(const std::vector<std::vector<T>>& A, const std::vector<T> & b_true, const std::vector<T> &x){
 	size_t n = A.size();
 	std::vector<T> b(n,0);
 	T norm1{0},normi{0};
@@ -72,7 +72,6 @@ std::pair<T,T> discrepancy(const std::vector<std::vector<T>>& A, const std::vect
 	}
 	return std::pair<T,T>(norm1,normi);
 }
-
 
 int main(){
 	std::cout << "Введите путь к директории: ";
@@ -95,7 +94,7 @@ int main(){
 			std::cout << element << " ";
 		}
 		std::cout << "}\n";
-		auto norm_f = discrepancy<float>(data_f.first,data_f.second,x_gauss_f);
+		auto norm_f = residual<float>(data_f.first, data_f.second, x_gauss_f);
 		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
 	}
 	else{
@@ -108,7 +107,7 @@ int main(){
 			std::cout << element << " ";
 		}
 		std::cout << "}\n";
-		auto norm_f = discrepancy<float>(data_f.first,data_f.second,x_QR_f);
+		auto norm_f = residual<float>(data_f.first, data_f.second, x_QR_f);
 		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
 	}
 	else{
@@ -124,7 +123,7 @@ int main(){
 			std::cout << element << " ";
 		}
 		std::cout << "}\n";
-		auto norm_d = discrepancy<double>(data_d.first,data_d.second,x_gauss_d);
+		auto norm_d = residual<double>(data_d.first, data_d.second, x_gauss_d);
 		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
 	}
 	else{
@@ -137,11 +136,13 @@ int main(){
 			std::cout << element << " ";
 		}
 		std::cout << "}\n";
-		auto norm_d = discrepancy<double>(data_d.first,data_d.second,x_QR_d);
+		auto norm_d = residual<double>(data_d.first, data_d.second, x_QR_d);
 		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
 	}
 	else{
 		std::cerr << "Решения не существует или оно не единственно\n";
 	}
+	std::cout << "Оценка числа обусловленности:\n" << "cond1: " << '\t' << "cond∞: " << '\n';
+
 	return 0;
 }
