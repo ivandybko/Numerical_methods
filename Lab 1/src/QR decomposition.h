@@ -69,6 +69,12 @@ std::vector<T> QRdecompostition(const std::pair<std::vector<std::vector<T>>, std
 			b1[i]+=transit[i][j]*b[j];
 		}
 	}
+	for (int i = 0; i < n; ++i)
+	{
+		if (A[i][i] == 0){
+			return std::vector<T>();
+		}
+	}
 	x[n-1]=b1[n-1]/A[n-1][n-1];
 	for (size_t i = n-1; i-- > 0; )
 	{
