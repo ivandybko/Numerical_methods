@@ -42,4 +42,38 @@ void multiply(const std::vector<std::vector<T>>& A, const std::vector<std::vecto
 		}
 	}
 }
+
+template <typename T>
+T octahedralNorm(const std::vector<std::vector<T>>& A) {
+	size_t n = A.size();
+	if (n == 0) return 0;
+	T maxColSum = 0;
+	for (size_t j = 0; j < n; ++j) {
+		T colSum = 0;
+		for (size_t i = 0; i < n; ++i) {
+			colSum += std::abs(A[i][j]);
+		}
+		if (colSum > maxColSum) {
+			maxColSum = colSum;
+		}
+	}
+	return maxColSum;
+}
+
+template <typename T>
+T cubicNorm(const std::vector<std::vector<T>>& A) {
+	size_t n = A.size();
+	if (n == 0) return 0;
+	T maxRowSum = 0;
+	for (size_t i = 0; i < n; ++i) {
+		T rowSum = 0;
+		for (size_t j = 0; j < n; ++j) {
+			rowSum += std::abs(A[i][j]);
+		}
+		if (rowSum > maxRowSum) {
+			maxRowSum = rowSum;
+		}
+	}
+	return maxRowSum;
+}
 #endif //LAB_1_SRC_MATRIX_OPERATIONS_H_

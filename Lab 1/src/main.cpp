@@ -77,7 +77,7 @@ int main(){
 	std::cout << "Введите путь к директории: ";
 	std::string path;
 	std::cin >> path;
-	std::cout << "Решение во float:\n";
+	std::cout << "\nРешение во float:\n";
 	auto data_f = *readData<float>(path);
 	auto x_gauss_f = Gauss<float>(data_f);
 	auto solution_f= readSolution<float>(path);
@@ -98,7 +98,7 @@ int main(){
 		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
 	}
 	else{
-		std::cerr << "Решения не существует или оно не единственно\n";
+		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
 	}
 	auto x_QR_f = QRdecompostition<float>(data_f);
 	if (!x_QR_f.empty()){
@@ -111,9 +111,12 @@ int main(){
 		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
 	}
 	else{
-		std::cerr << "Решения не существует или оно не единственно\n";
+		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
 	}
-	std::cout << "Решение в double:\n";
+	std::cout << "\nОценка числа обусловленности:\n" << "cond1=" << (x_gauss_f.empty() ? std::numeric_limits<double>::infinity() :octahedralNorm<float>(data_f.first)* octahedralNorm<float>(
+		*inverse<float>(data_f.first))) << '\t' << "cond∞=" << (x_gauss_f.empty() ? std::numeric_limits<double>::infinity() : cubicNorm<float>(data_f.first)* cubicNorm<float>(
+		*inverse<float>(data_f.first))) << '\n';
+	std::cout << "\nРешение в double:\n";
 	auto data_d = *readData<double>(path);
 	auto x_gauss_d = Gauss<double>(data_d);
 	auto solution_d= readSolution<double>(path);
@@ -127,7 +130,7 @@ int main(){
 		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
 	}
 	else{
-		std::cerr << "Решения не существует или оно не единственно";
+		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
 	}
 	auto x_QR_d = QRdecompostition<double>(data_d);
 	if (!x_QR_d.empty()){
@@ -140,9 +143,10 @@ int main(){
 		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
 	}
 	else{
-		std::cerr << "Решения не существует или оно не единственно\n";
+		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
 	}
-	std::cout << "Оценка числа обусловленности:\n" << "cond1: " << '\t' << "cond∞: " << '\n';
-
+	std::cout << "\nОценка числа обусловленности:\n" << "cond1=" << (x_gauss_d.empty() ? std::numeric_limits<double>::infinity() : octahedralNorm<double>(data_d.first)* octahedralNorm<double>(
+		*inverse<double>(data_d.first))) << '\t' << "cond∞=" << (x_gauss_d.empty() ? std::numeric_limits<double>::infinity() : cubicNorm<double>(data_d.first)* cubicNorm<double>(
+		*inverse<double>(data_d.first))) << '\n';
 	return 0;
 }
