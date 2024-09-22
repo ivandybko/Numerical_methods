@@ -100,6 +100,7 @@ int main(){
 	else{
 		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
 	}
+
 	auto x_QR_f = QRdecompostition<float>(data_f);
 	if (!x_QR_f.empty()){
 		std::cout << "Решение используя QR разложение:\n { " ;
@@ -113,9 +114,12 @@ int main(){
 	else{
 		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
 	}
+
 	std::cout << "\nОценка числа обусловленности:\n" << "cond1=" << (x_gauss_f.empty() ? std::numeric_limits<double>::infinity() :octahedralNorm<float>(data_f.first)* octahedralNorm<float>(
 		*inverse<float>(data_f.first))) << '\t' << "cond∞=" << (x_gauss_f.empty() ? std::numeric_limits<double>::infinity() : cubicNorm<float>(data_f.first)* cubicNorm<float>(
 		*inverse<float>(data_f.first))) << '\n';
+
+
 	std::cout << "\nРешение в double:\n";
 	auto data_d = *readData<double>(path);
 	auto x_gauss_d = Gauss<double>(data_d);
@@ -132,6 +136,7 @@ int main(){
 	else{
 		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
 	}
+
 	auto x_QR_d = QRdecompostition<double>(data_d);
 	if (!x_QR_d.empty()){
 		std::cout << "Решение используя QR разложение:\n { " ;
@@ -145,8 +150,92 @@ int main(){
 	else{
 		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
 	}
+
 	std::cout << "\nОценка числа обусловленности:\n" << "cond1=" << (x_gauss_d.empty() ? std::numeric_limits<double>::infinity() : octahedralNorm<double>(data_d.first)* octahedralNorm<double>(
 		*inverse<double>(data_d.first))) << '\t' << "cond∞=" << (x_gauss_d.empty() ? std::numeric_limits<double>::infinity() : cubicNorm<double>(data_d.first)* cubicNorm<double>(
 		*inverse<double>(data_d.first))) << '\n';
+
+	size_t n{data_f.first.size()};
+	std::vector<float> b_f_per(data_f.second);
+	for (int i = 0; i < n/2; ++i)
+	{
+		b_f_per[rand() % n] += 0.01;
+		b_f_per[rand() % n] -= 0.01 ;
+	}
+	std::cout << "\nВектор с внесенным возмущением (в float):\n{ ";
+	for (auto element : b_f_per)
+	{
+		std::cout << element << " ";
+	}
+	std::cout << " }\n";
+
+	auto x_gauss_f_per = Gauss<float>(std::pair<std::vector<std::vector<float>>, std::vector<float>>(data_f.first, b_f_per));
+	if (!x_gauss_f_per.empty()){
+		std::cout << "Решение методом Гаусса системы с возмущенной правой частью:\n { " ;
+		for (auto element : x_gauss_f_per){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		auto norm_f = residual<float>(data_f.first, b_f_per, x_gauss_f_per);
+		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
+	}
+	else{
+		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
+	}
+
+	auto x_QR_f_per = QRdecompostition<float>(std::pair<std::vector<std::vector<float>>, std::vector<float>>(data_f.first, b_f_per));
+	if (!x_QR_f_per.empty()){
+		std::cout << "Решение используя QR разложение с возмущенной правой частью:\n { " ;
+		for (auto element : x_QR_f_per){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		auto norm_f = residual<float>(data_f.first, b_f_per, x_QR_f_per);
+		std::cout << "Октаэдрическая норма: " << norm_f.first << ';' << " Кубическая норма: " << norm_f.second << '\n';
+	}
+	else{
+		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
+	}
+
+	std::vector<double> b_d_per(data_d.second);
+	for (int i = 0; i < n/2; ++i)
+	{
+		b_d_per[rand() % n] += 0.01;
+		b_d_per[rand() % n] -= 0.01 ;
+	}
+	std::cout << "\nВектор с внесенным возмущением (в double) [могут быть изменены другие элементы]:\n{ ";
+	for (auto element : b_d_per)
+	{
+		std::cout << element << " ";
+	}
+	std::cout << "}\n";
+
+	auto x_gauss_d_per = Gauss<double>(std::pair<std::vector<std::vector<double>>, std::vector<double>>(data_d.first, b_d_per));
+	if (!x_gauss_d_per.empty()){
+		std::cout << "Решение методом Гаусса системы с возмущенной правой частью:\n { " ;
+		for (auto element : x_gauss_d_per){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		auto norm_d = residual<double>(data_d.first, b_d_per, x_gauss_d_per);
+		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
+	}
+	else{
+		std::cout << "Метод Гаусса: Решения не существует или оно не единственно\n";
+	}
+
+	auto x_QR_d_per = QRdecompostition<double>(std::pair<std::vector<std::vector<double>>, std::vector<double>>(data_d.first, b_d_per));
+	if (!x_QR_d_per.empty()){
+		std::cout << "Решение используя QR разложение с возмущенной правой частью:\n { " ;
+		for (auto element : x_QR_d_per){
+			std::cout << element << " ";
+		}
+		std::cout << "}\n";
+		auto norm_d = residual<double>(data_d.first, b_d_per, x_QR_d_per);
+		std::cout << "Октаэдрическая норма: " << norm_d.first << ';' << " Кубическая норма: " << norm_d.second << '\n';
+	}
+	else{
+		std::cout << "Метод QR разложения: Решения не существует или оно не единственно\n";
+	}
 	return 0;
 }
