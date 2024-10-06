@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-
+#include "../../Lab 1/src/matrix_operations.h"
 //template <typename T>
 //bool checkConvergence(const std::vector<T> & b_minus_Ax, const std::vector<T> &x, const std::vector<T> &x_old, T eps)
 //{

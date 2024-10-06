@@ -5,6 +5,8 @@
 #include <memory>
 #include "SimpleIterationMethod.h"
 #include "JacobiMethod.h"
+#include "SeidelMethod.h"
+
 template <typename T>
 std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<T>>> readData(const std::string& path) {
 	auto data = std::make_unique<std::pair<std::vector<std::vector<T>>, std::vector<T>>>();
@@ -52,4 +54,6 @@ int main()
 	std::cout << "Решение найденное методом простой итерации: " << x_simpleiter << '\n';
 	auto x_jacobi = JacobiMethod<double>(data, 10000,1e-2);
 	std::cout << "Решение найденное методом Якоби: "<< x_jacobi << '\n';
+	auto x_seidel = SeidelMethod<double>(data, 10000,1e-2);
+	std::cout << "Решение найденное методом Зейделя: "<< x_seidel << '\n';
 }
