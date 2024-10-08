@@ -6,6 +6,7 @@
 #include "SimpleIterationMethod.h"
 #include "JacobiMethod.h"
 #include "SeidelMethod.h"
+#include "SuccessiveRelaxationMethod.h"
 
 template <typename T>
 std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<T>>> readData(const std::string& path) {
@@ -56,4 +57,6 @@ int main()
 	std::cout << "Решение найденное методом Якоби: "<< x_jacobi << '\n';
 	auto x_seidel = SeidelMethod<double>(data, 10000,1e-2);
 	std::cout << "Решение найденное методом Зейделя: "<< x_seidel << '\n';
+	auto x_relaxation = SuccessiveRelaxationMethod<double>(data, 10000,1e-2,1.2);
+	std::cout << "Решение найденное методом релаксации: "<< x_relaxation << '\n';
 }
