@@ -44,6 +44,23 @@ std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<T>>> readData
 	return data;
 }
 
+template <typename T>
+std::tuple<std::shared_ptr<std::vector<T>>, std::shared_ptr<std::vector<T>>,
+		   std::shared_ptr<std::vector<T>>, std::shared_ptr<std::vector<T>>>
+TridiagonalMatrixGenerator(int N) {
+	int n = 200 + N;
+	auto a = std::make_shared<std::vector<T>>(n-1, 1);
+	auto b = std::make_shared<std::vector<T>>(n, 4);
+	auto c = std::make_shared<std::vector<T>>(n-1, 1);
+	auto d = std::make_shared<std::vector<T>>(n);
+	(*d)[0] = 6;
+	for (int i = 1; i < n - 1; ++i) {
+		(*d)[i] = 10 - 2 * (i % 2);
+	}
+	(*d)[n - 1] = 9 - 3 * (n % 2);
+	return std::make_tuple(a, b, c, d);
+}
+
 int main()
 {
 	std::cout << "Введите путь к директории: ";
@@ -59,4 +76,13 @@ int main()
 	std::cout << "Решение найденное методом Зейделя: "<< x_seidel << '\n';
 	auto x_relaxation = SuccessiveRelaxationMethod<double>(data, 10000,1e-2,1.2);
 	std::cout << "Решение найденное методом релаксации: "<< x_relaxation << '\n';
+	auto sol_simpleiter = SimpleIterationMethod<double>(data, 100000,1e-2,1e-7);
+	if (!sol_simpleiter.x.empty()){std::cout << "Решение найденное за " << sol_simpleiter.iter << " итераций методом простой итерации (норма матрицы С=" << sol_simpleiter.norm_C << "): " << sol_simpleiter.x << '\n';}
+	auto sol_jacobi = JacobiMethod<double>(data, 100000,1e-2);
+	if (!sol_jacobi.x.empty()){std::cout << "Решение найденное за " << sol_jacobi.iter << " итераций методом Якоби (норма матрицы С=" << sol_jacobi.norm_C << "): " << sol_jacobi.x << '\n';}
+	auto sol_seidel = SeidelMethod<double>(data, 100000,1e-2);
+	if (!sol_seidel.x.empty()){std::cout << "Решение найденное за " << sol_seidel.iter << " итераций методом Зейделя (сумма норм матриц ||С_L||+||C_U||=" << sol_seidel.norm_C << "): " << sol_seidel.x << '\n';}
+	auto sol_relaxation = SuccessiveRelaxationMethod<double>(data, 10000,1e-2,0.4);
+	if (!sol_relaxation.x.empty()){std::cout << "Решение найденное за " << sol_relaxation.iter << " итераций методом релаксации (сумма норм матриц ||С_L||+||C_U||=" << sol_relaxation.norm_C << "): " << sol_relaxation.x << '\n';}
+	auto tridiagonal_matrix = TridiagonalMatrixGenerator<double>(7);
 }
