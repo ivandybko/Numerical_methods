@@ -55,7 +55,7 @@ TridiagonalMatrixGenerator(int N) {
 	auto d = std::make_shared<std::vector<T>>(n);
 	(*d)[0] = 6;
 	for (int i = 1; i < n - 1; ++i) {
-		(*d)[i] = 10 - 2 * (i % 2);
+		(*d)[i] = 10 - 2 * ((i+1) % 2);
 	}
 	(*d)[n - 1] = 9 - 3 * (n % 2);
 	return std::make_tuple(a, b, c, d);
@@ -68,14 +68,6 @@ int main()
 	std::cin >> path;
 	std::cout << '\n';
 	auto data = *readData<double>(path);
-	auto x_simpleiter = SimpleIterationMethod<double>(data, 10000,1e-8);
-	std::cout << "Решение найденное методом простой итерации: " << x_simpleiter << '\n';
-	auto x_jacobi = JacobiMethod<double>(data, 10000,1e-2);
-	std::cout << "Решение найденное методом Якоби: "<< x_jacobi << '\n';
-	auto x_seidel = SeidelMethod<double>(data, 10000,1e-2);
-	std::cout << "Решение найденное методом Зейделя: "<< x_seidel << '\n';
-	auto x_relaxation = SuccessiveRelaxationMethod<double>(data, 10000,1e-2,1.2);
-	std::cout << "Решение найденное методом релаксации: "<< x_relaxation << '\n';
 	auto sol_simpleiter = SimpleIterationMethod<double>(data, 100000,1e-2,1e-7);
 	if (!sol_simpleiter.x.empty()){std::cout << "Решение найденное за " << sol_simpleiter.iter << " итераций методом простой итерации (норма матрицы С=" << sol_simpleiter.norm_C << "): " << sol_simpleiter.x << '\n';}
 	auto sol_jacobi = JacobiMethod<double>(data, 100000,1e-2);
@@ -85,4 +77,14 @@ int main()
 	auto sol_relaxation = SuccessiveRelaxationMethod<double>(data, 10000,1e-2,0.4);
 	if (!sol_relaxation.x.empty()){std::cout << "Решение найденное за " << sol_relaxation.iter << " итераций методом релаксации (сумма норм матриц ||С_L||+||C_U||=" << sol_relaxation.norm_C << "): " << sol_relaxation.x << '\n';}
 	auto tridiagonal_matrix = TridiagonalMatrixGenerator<double>(7);
+	auto sol_seidel_tridiag = SeidelMethod<double>(*std::get<0>(tridiagonal_matrix),
+															  *std::get<1>(tridiagonal_matrix),
+			  												  *std::get<2>(tridiagonal_matrix),
+			  												  *std::get<3>(tridiagonal_matrix), 10000,1e-4);
+	if (!sol_seidel_tridiag.x.empty()){std::cout << "Решение найденное за " << sol_seidel_tridiag.iter << " итераций методом Зейделя случая трехдиагональной матрицы: "<< sol_seidel_tridiag.x << '\n';}
+	auto sol_relaxation_tridiag = SuccessiveRelaxationMethod<double>(*std::get<0>(tridiagonal_matrix),
+		*std::get<1>(tridiagonal_matrix),
+		*std::get<2>(tridiagonal_matrix),
+		*std::get<3>(tridiagonal_matrix), 10000,1e-4,1.1);
+	if (!sol_relaxation_tridiag.x.empty()){std::cout << "Решение найденное за " << sol_relaxation_tridiag.iter << " итераций методом Зейделя случая трехдиагональной матрицы: "<< sol_relaxation_tridiag.x << '\n';}
 }

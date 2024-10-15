@@ -8,4 +8,6 @@ add_executable(Lab_2 main.cpp
         "SimpleIterationMethod.h"
         SeidelMethod.h
         "../../Lab 1/src/matrix_operations.h"
-        SuccessiveRelaxationMethod.h)
+        SuccessiveRelaxationMethod.h
+        Solution.h
+        StoppingCriteria.h)

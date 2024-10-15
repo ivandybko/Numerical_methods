@@ -88,4 +88,30 @@ Solution<T> SuccessiveRelaxationMethod(const std::pair<std::vector<std::vector<T
 	std::cout << "Метод релаксации: превышен лимит итераций\n";
 	return {};
 }
+
+template <typename T>
+Solution<T> SuccessiveRelaxationMethod(const std::vector<T> &a, const std::vector<T> &b, const std::vector<T> &c, const std::vector<T> &d, int max_iter =1000, T eps=1e-4, T omega=1.1){
+	size_t n = d.size();
+	std::vector<T> x(n, 0.0);
+	for (size_t iter = 0; iter < max_iter; ++iter) {
+		std::vector<T> x_old{x};
+		std::vector<T> d_new(n);
+		x[0]=(1-omega)*x_old[0]+omega*(d[0]-c[0]*x_old[1])/b[0];
+		for (size_t i = 1; i < n-1; ++i) {
+			x[i]=(1-omega)*x_old[i]+omega*(d[i]-a[i-1]*x[i-1]-c[i]*x_old[i+1])/b[i];
+		}
+		x[n-1]=(1-omega)*x_old[n-1]+omega*(d[n-1]-a[n-2]*x[n-2])/b[n-1];
+		d_new[0]=b[0]*x[0]+c[0]*x[1];
+		for (size_t i = 1; i < n-1; ++i) {
+			d_new[i]=a[i-1]*x[i-1]+b[i]*x[i]+c[i]*x[i+1];
+		}
+		d_new[n-1]=a[n-2]*x[n-2]+b[n-1]*x[n-1];
+		if (checkConvergence(d_new, d, eps)) {
+			return Solution<T>{x, iter , NULL};
+		}
+	}
+
+	std::cout << "Метод Зейделя: превышен лимит итераций\n";
+	return {};
+}
 #endif //LAB_2_SRC_SUCCESSIVERELAXATIONMETHOD_H_
