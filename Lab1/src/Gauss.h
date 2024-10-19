@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <limits> 
 template <typename T>
 std::vector<T> Gauss(const std::pair<std::vector<std::vector<T>>, std::vector<T>> &data){
 	auto A = data.first;
