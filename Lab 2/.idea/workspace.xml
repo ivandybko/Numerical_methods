@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="255a3fb8-8499-4bc5-b30c-78c2f9da7929" name="Changes" comment="Lab finished">
+      <change beforePath="$PROJECT_DIR$/../Lab 1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/doc/Report Lab 1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/Gauss.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/QR decomposition.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/1/DATA1.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/1/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/1/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/10/DATA10.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/10/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/10/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/11/DATA11.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/11/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/11/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/12/DATA12.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/12/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/12/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/13/DATA13.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/13/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/13/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/14/DATA14.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/14/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/14/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/15/DATA15.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/15/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/15/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/16/DATA16.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/16/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/16/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/17/DATA17.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/17/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/17/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/18/DATA18.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/18/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/18/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/19/DATA19.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/19/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/19/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/2/DATA2.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/2/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/2/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/20/DATA20.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/20/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/20/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/21/DATA21.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/21/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/22/DATA22.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/22/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/22/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/23/DATA23.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/23/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/23/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/24/DATA24.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/24/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/24/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/25/DATA25.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/25/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/25/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/26/DATA26.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/26/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/26/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/27/DATA27.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/27/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/27/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/28/DATA28.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/28/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/28/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/29/DATA29.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/29/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/29/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/3/DATA3.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/3/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/3/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/30/DATA30.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/30/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/30/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/4/DATA4.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/4/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/4/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/5/DATA5.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/5/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/5/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/6/DATA6.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/6/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/6/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/7/DATA7.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/7/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/7/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/8/DATA8.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/8/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/8/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/9/DATA9.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/9/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS1/9/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/1/P_DAT1.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/1/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/1/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/10/P_DAT10.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/10/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/10/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/11/P_DAT11.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/11/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/11/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/12/P_DAT12.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/12/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/12/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/13/P_DAT13.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/13/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/13/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/14/P_DAT14.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/14/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/14/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/15/P_DAT15.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/15/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/15/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/16/P_DAT1.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/16/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/16/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/17/P_DAT2.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/17/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/17/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/18/P_DAT3.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/18/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/18/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/19/P_DAT4.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/19/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/19/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/2/P_DAT2.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/2/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/2/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/20/P_DAT5.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/20/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/20/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/21/P_DAT6.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/21/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/21/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/22/P_DAT7.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/22/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/22/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/23/P_DAT8.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/23/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/23/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/24/P_DAT9.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/24/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/24/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/25/P_DAT10.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/25/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/25/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/26/P_DAT11.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/26/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/26/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/27/P_DAT12.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/27/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/27/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/28/P_DAT13.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/28/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/28/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/29/P_DAT14.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/29/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/29/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/3/P_DAT3.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/3/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/3/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/30/P_DAT15.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/30/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/30/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/4/P_DAT4.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/4/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/4/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/5/P_DAT5.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/5/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/5/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/6/P_DAT6.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/6/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/6/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/7/P_DAT7.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/7/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/7/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/8/P_DAT8.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/8/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/8/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/9/P_DAT9.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/9/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/SYS2/9/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/1/D1.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/1/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/1/solution.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/1/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/2/D2.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/2/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/2/solution.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/2/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/3/D3.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/3/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/3/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/4/D4.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/4/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/4/solution.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/4/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/5/D5.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/5/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/5/solution.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/data/TEST/5/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab 1/src/matrix_operations.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JacobiMethod.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SeidelMethod.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleIterationMethod.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Solution.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StoppingCriteria.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SuccessiveRelaxationMethod.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/test1/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/test1/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/test2/matrix.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/test2/vector.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ivandybko&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ivandybko/Numerical_methods.git&quot;,
+    &quot;accountId&quot;: &quot;fdebabc1-c44e-41a1-a875-f5f6a3ddb4e0&quot;
+  }
+}</component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="3.4" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2msbwn1mmVM97FX3PKA4PLFBvyn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.Lab_2.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/ivandybko/Projects/Numerical_methods/Lab 2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Lab_2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="true" REDIRECT_INPUT_PATH="$PROJECT_DIR$/src/input.txt" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/src" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="Lab_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="Lab_2">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="255a3fb8-8499-4bc5-b30c-78c2f9da7929" name="Changes" comment="" />
+      <created>1727868472122</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727868472122</updated>
+      <workItem from="1727868475877" duration="265000" />
+      <workItem from="1728130854855" duration="18346000" />
+      <workItem from="1728390624965" duration="457000" />
+      <workItem from="1728394341064" duration="14000" />
+      <workItem from="1728395112130" duration="10498000" />
+      <workItem from="1728585398463" duration="16031000" />
+      <workItem from="1728998550848" duration="2236000" />
+      <workItem from="1729001257993" duration="12714000" />
+    </task>
+    <task id="LOCAL-00001" summary="SimpleIterationMethod.h and JacobiMethod.h have been completed. matrix_operations.h has supplemented with new operators">
+      <option name="closed" value="true" />
+      <created>1728208745434</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728208745434</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Testing data added">
+      <option name="closed" value="true" />
+      <created>1728208979778</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728208979778</updated>
+    </task>
+    <task id="LOCAL-00003" summary="SuccessiveRelaxationMethod.h implemented">
+      <option name="closed" value="true" />
+      <created>1728396897614</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728396897614</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Solution.h and StoppingCriteria.h implemented">
+      <option name="closed" value="true" />
+      <created>1728746413758</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728746413758</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Iteration matrix calculation for all methods implemented.">
+      <option name="closed" value="true" />
+      <created>1728746607503</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728746607503</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Lab finished">
+      <option name="closed" value="true" />
+      <created>1729004309778</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729004309778</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="SimpleIterationMethod.h and JacobiMethod.h have been completed. matrix_operations.h has supplemented with new operators" />
+    <MESSAGE value="Testing data added" />
+    <MESSAGE value="SuccessiveRelaxationMethod.h implemented" />
+    <MESSAGE value="Solution.h and StoppingCriteria.h implemented" />
+    <MESSAGE value="Iteration matrix calculation for all methods implemented." />
+    <MESSAGE value="Lab finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab finished" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <condition expression="iter == 5000" language="ObjectiveC" />
+          <url>file://$PROJECT_DIR$/src/SeidelMethod.h</url>
+          <line>72</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.cpp</url>
+          <line>79</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/SeidelMethod.h</url>
+          <line>94</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
