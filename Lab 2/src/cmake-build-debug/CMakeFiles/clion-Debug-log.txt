@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /Users/ivandybko/Projects/Numerical_methods/Lab 2/src Select CMakeLists.txt
