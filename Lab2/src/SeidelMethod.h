@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-#include "../../Lab 1/src/matrix_operations.h"
+#include "../../Lab1/src/matrix_operations.h"
 #include "Solution.h"
 #include "StoppingCriteria.h"
 
