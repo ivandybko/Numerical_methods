@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {\hbox to 0pt{\hss }{{\textbf {1.\ }}}}{{\textbf {\ignorespaces {Описание использованных алгоритмов}}}}}{2}{section*.1}%
+\contentsline {subsection}{\numberline {\hbox to 0pt{\hss }{{1.1.\ }}}{\ignorespaces {Метод Гаусса}}}{2}{section*.2}%
+\contentsline {subsection}{\numberline {\hbox to 0pt{\hss }{{1.2.\ }}}{\ignorespaces {Метод вращения Гивенса}}}{3}{section*.3}%
+\contentsline {section}{\numberline {\hbox to 0pt{\hss }{{\textbf {2.\ }}}}{{\textbf {\ignorespaces {Ответы на контрольные вопросы}}}}}{4}{section*.4}%
+\contentsline {section}{\numberline {\hbox to 0pt{\hss }{{\textbf {3.\ }}}}{{\textbf {\ignorespaces {Ответы на дополнительные вопросы}}}}}{7}{section*.5}%
