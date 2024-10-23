@@ -1,0 +1,8 @@
+
+/Lab1/src/cmake-build-debug
+/Lab2/src/cmake-build-debug
+*.tex
+*.toc
+*.log
+*.aux
+*.gz
