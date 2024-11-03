@@ -97,4 +97,26 @@ std::vector<T> QRdecompostition(const std::pair<std::vector<std::vector<T>>, std
 //	}
 	return x;
 }
+
+template <typename T>
+std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>>> QRdecomposition(const std::vector<std::vector<T>>& matrix){
+	auto A = matrix;
+	size_t n = A.size();
+	std::vector<std::vector<T>> transit(n,std::vector<T>(n,0));
+	for (int i = 0; i < n; ++i)
+	{
+		transit[i][i]=1;
+	}
+	for (int i = 0; i < n-1; ++i)
+	{
+		for (int j = i+1; j < n; ++j)
+		{
+			if (A[j][i] != 0 or A[i][i]!=0){
+				rotate(transit,A,i,j);
+			}
+		}
+	}
+	transpose(transit);
+	return std::make_unique<std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>>>(std::move(transit), std::move(A));
+}
 #endif //LAB_1_SRC_QR_DECOMPOSITION_H_
