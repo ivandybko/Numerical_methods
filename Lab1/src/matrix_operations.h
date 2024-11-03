@@ -128,6 +128,20 @@ T octahedralNorm(const std::vector<std::vector<T>>& A) {
 }
 
 template <typename T>
+T octahedralNormBelowDiagonal(const std::vector<std::vector<T>>& matrix) {
+	T max_sum = 0;
+	for (size_t j = 0; j < matrix.size(); ++j) {
+		T column_sum = 0;
+		for (size_t i = j + 1; i < matrix.size(); ++i) {
+			column_sum += std::abs(matrix[i][j]);
+		}
+		max_sum = std::max(max_sum, column_sum);
+	}
+
+	return max_sum;
+}
+
+template <typename T>
 T cubicNorm(const std::vector<std::vector<T>>& A) {
 	size_t n = A.size();
 	if (n == 0) return 0;
