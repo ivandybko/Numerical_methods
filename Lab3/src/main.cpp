@@ -33,7 +33,7 @@ int main()
 	std::cin >> path;
 	std::cout << '\n';
 	auto data = readData<double>(path);
-	auto eigen_vectors_QR = QRAlgorithm<double>(*data, 1e-4, true);
+	auto eigen_vectors_QR = QRAlgorithm<double>(*data, 1e-4, true, true);
 	std::cout << eigen_vectors_QR;
 	return 0;
 }

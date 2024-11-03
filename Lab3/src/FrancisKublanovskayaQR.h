@@ -4,7 +4,8 @@
 #include <vector>
 #include "../../Lab1/src/QR decomposition.h"
 #include "../../Lab1/src/matrix_operations.h"
-#include "FindEigenVectors.h"
+#include "HessenbergReduction.h"
+
 template <typename T>
 std::unique_ptr<std::vector<std::vector<T>>> multiplyRQ(const std::vector<std::vector<T>>& R, const std::vector<std::vector<T>>& Q) {
 	size_t n = R.size();
@@ -20,10 +21,13 @@ std::unique_ptr<std::vector<std::vector<T>>> multiplyRQ(const std::vector<std::v
 }
 
 template <typename T>
-std::vector<T> QRAlgorithm(const std::vector<std::vector<T>> &matrix, T eps, T IsShift=false){
+std::vector<T> QRAlgorithm(const std::vector<std::vector<T>> &matrix, T eps, bool ShiftMode=false, bool HessenbergReduction=false){
 	T shift{0};	int n = matrix.size(); std::vector<std::vector<T>> A{matrix};	std::vector<T> eigenvalues;
+	if (HessenbergReduction){
+		reduceToHessenbergWithGivens(A);
+	}
 	while (n > 0){
-		if (IsShift){
+		if (ShiftMode){
 			shift = A[n-1][n-1];
 			for (int i = 0; i < n; ++i)
 			{
