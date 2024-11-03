@@ -43,3 +43,14 @@ jobs:
     - name: Test Lab2
       working-directory: Lab2/build
       run: ctest -C ${{env.BUILD_TYPE}}
+
+    # Сборка проекта Lab3
+    - name: Configure CMake for Lab2
+      run: cmake -S Lab3/src -B Lab3/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build Lab3
+      run: cmake --build Lab3/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test Lab3
+      working-directory: Lab3/build
+      run: ctest -C ${{env.BUILD_TYPE}}
