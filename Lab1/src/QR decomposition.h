@@ -68,35 +68,6 @@ std::vector<T> QRdecompostition(const std::pair<std::vector<std::vector<T>>, std
 		x[i]=(b1[i]-sum)/A[i][i];
 	}
 	transpose(transit);
-//	std::vector<std::vector<T>> test(n,std::vector<T>(n,0));
-//	multiply(transit,A,test);
-//	std::cout << "Q:\n";
-//	for (auto row : transit)
-//	{
-//		for (auto element : row)
-//		{
-//			std::cout << element << ' ';
-//		}
-//		std::cout << '\n';
-//	}
-//	std::cout << "R:\n";
-//	for (auto row : A)
-//	{
-//		for (auto element : row)
-//		{
-//			std::cout << element << ' ';
-//		}
-//		std::cout << '\n';
-//	}
-//	std::cout << "QR:\n";
-//	for (auto row : test)
-//	{
-//		for (auto element : row)
-//		{
-//			std::cout << element << ' ';
-//		}
-//		std::cout << '\n';
-//	}
 	return x;
 }
 
