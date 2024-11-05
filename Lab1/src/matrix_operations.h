@@ -221,4 +221,19 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 	os << "]";
 	return os;
 }
+
+template <typename T>
+void normalize(std::vector<T>& vec) {
+	T norm = 0;
+	for (const auto& val : vec) {
+		norm += val * val;
+	}
+	norm = std::sqrt(norm);
+	if (norm == 0) {
+		throw std::runtime_error("Невозможно нормировать нулевой вектор");
+	}
+	for (auto& val : vec) {
+		val /= norm;
+	}
+}
 #endif //LAB_1_SRC_MATRIX_OPERATIONS_H_
