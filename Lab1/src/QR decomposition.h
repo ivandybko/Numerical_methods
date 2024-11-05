@@ -4,7 +4,9 @@
 #include <vector>
 #include <utility>
 #include <cmath>
+#include <memory>
 #include "matrix_operations.h"
+
 template <typename T>
 void rotate(std::vector<std::vector<T>>& transit, std::vector<std::vector<T>>& A, int i, int j) {
 	T c = A[i][i]/std::sqrt(A[i][i]*A[i][i]+A[j][i]*A[j][i]);

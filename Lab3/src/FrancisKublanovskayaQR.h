@@ -2,6 +2,7 @@
 #define LAB3__FRANCISKUBLANOVSKAYAQR_H_
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "../../Lab1/src/QR decomposition.h"
 #include "../../Lab1/src/matrix_operations.h"
 #include "HessenbergReduction.h"
