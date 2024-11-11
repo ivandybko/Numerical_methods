@@ -100,8 +100,8 @@ std::vector<T> operator+(const std::vector<T>& vec1, const std::vector<T>& vec2)
 
 template <typename T>
 std::vector<T> operator-(const std::vector<T>& vec1, const std::vector<T>& vec2) {
-	if (vec1.size() != vec2.size()) {
-		throw std::invalid_argument("Векторы должны иметь одинаковую длину для вычитания.");
+	if (vec1.size() != vec2.size()) {throw std::invalid_argument("Векторы должны иметь одинаковую длину для вычитания.");
+
 	}
 	std::vector<T> result(vec1.size());
 	for (size_t i = 0; i < vec1.size(); ++i) {

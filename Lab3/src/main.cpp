@@ -36,10 +36,17 @@ int main()
 	auto data = readData<double>(path);
 	auto eigen_values = QRAlgorithm<double>(*data, 1e-10, true, true);
 	std::cout << eigen_values << '\n';
+	std::cout << "Решение методом обратной итерации без соотношения Рэлея: \n";
 	auto eigen_vectors = InverseIterationMethod<double>(*data, eigen_values, 1e-10);
 	for (int i = 0; i < eigen_values.size(); ++i)
 	{
 		std::cout << "λ=" << eigen_values[i] << "; Eigen vector: " << *eigen_vectors[i] <<";\n";
+	}
+	std::cout << "Решение методом обратной итерации с соотношением Рэлея: \n";
+	auto eigen_system = InverseIterationMethod<double>(*data, 1e-10);
+	for (int i = 0; i < eigen_system.first.size(); ++i)
+	{
+		std::cout << "λ=" << eigen_system.first[i] << "; Eigen vector: " << *eigen_system.second[i] <<";\n";
 	}
 	return 0;
 }
