@@ -6,3 +6,10 @@
 *.log
 *.aux
 *.gz
+/Lab3/cmake-build-debug
+/Lab4/src/cmake-build-debug
+/Lab3/src/cmake-build-debug
+*.xml
+*.iml
+/Lab2/.idea
+/Lab2/doc
