@@ -6,6 +6,8 @@
 #include "../../Lab1/src/QR decomposition.h"
 #include "../../Lab1/src/matrix_operations.h"
 #include "HessenbergReduction.h"
+extern int N;
+extern int iter;
 
 template <typename T>
 std::unique_ptr<std::vector<std::vector<T>>> multiplyRQ(const std::vector<std::vector<T>>& R, const std::vector<std::vector<T>>& Q) {
@@ -15,6 +17,7 @@ std::unique_ptr<std::vector<std::vector<T>>> multiplyRQ(const std::vector<std::v
 		for (size_t j = i; j < n; ++j) {
 			for (size_t k = 0; k < n; ++k) {
 				(*result)[i][k] += R[i][j] * Q[j][k];
+				N++;
 			}
 		}
 	}
@@ -28,6 +31,7 @@ std::vector<T> QRAlgorithm(const std::vector<std::vector<T>> &matrix, T eps, boo
 		reduceToHessenbergWithGivens(A);
 	}
 	while (n > 0){
+		iter++;
 		if (ShiftMode){
 			shift = A[n-1][n-1];
 			for (int i = 0; i < n; ++i)
