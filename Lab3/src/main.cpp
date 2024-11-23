@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include "grid_generators.h"
 #include "NewtonInterpolation.h"
 #include "../../Lab1/src/matrix_operations.h"
