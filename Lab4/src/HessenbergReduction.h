@@ -9,7 +9,6 @@ void givensRotation(T a, T b, T& c, T& s) {
 	T r = std::sqrt(a * a + b * b);
 	c = a / r;
 	s = -b / r;
-	N+=4;
 }
 
 template <typename T>
@@ -19,7 +18,6 @@ void applyGivensLeft(std::vector<std::vector<T>>& A, T c, T s, size_t i, size_t 
 		T temp = c * A[i][k] - s * A[j][k];
 		A[j][k] = s * A[i][k] + c * A[j][k];
 		A[i][k] = temp;
-		N+=4;
 	}
 }
 
@@ -30,7 +28,6 @@ void applyGivensRight(std::vector<std::vector<T>>& A, T c, T s, size_t i, size_t
 		T temp = c * A[k][i] - s * A[k][j];
 		A[k][j] = s * A[k][i] + c * A[k][j];
 		A[k][i] = temp;
-		N+=4;
 	}
 }
 
