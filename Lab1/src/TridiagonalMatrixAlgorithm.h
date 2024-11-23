@@ -3,16 +3,17 @@
 #include <vector>
 #include <stdexcept>
 
-std::vector<double> TridiagonalMatrixAlgorithm(const std::vector<double>& a,
-	const std::vector<double>& b,
-	const std::vector<double>& c,
-	const std::vector<double>& d) {
+template <typename T>
+std::vector<T> TridiagonalMatrixAlgorithm(const std::vector<T>& a,
+	const std::vector<T>& b,
+	const std::vector<T>& c,
+	const std::vector<T>& d) {
 	size_t n = b.size();
 	if (a.size() != n - 1 || c.size() != n - 1 || d.size() != n) {
 		throw std::invalid_argument("Размеры диагоналей не соответствуют размеру системы.");
 	}
-	std::vector<double> cp(n - 1);
-	std::vector<double> dp(n);
+	std::vector<T> cp(n - 1);
+	std::vector<T> dp(n);
 	cp[0] = c[0] / b[0];
 	dp[0] = d[0] / b[0];
 	for (size_t i = 1; i < n; ++i) {
@@ -25,7 +26,7 @@ std::vector<double> TridiagonalMatrixAlgorithm(const std::vector<double>& a,
 		}
 		dp[i] = (d[i] - a[i - 1] * dp[i - 1]) / denom;
 	}
-	std::vector<double> x(n);
+	std::vector<T> x(n);
 	x[n - 1] = dp[n - 1];
 	for (int i = n - 2; i >= 0; --i) {
 		x[i] = dp[i] - cp[i] * x[i + 1];
