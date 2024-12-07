@@ -17,7 +17,7 @@ class CubicSpline {
 	std::vector<T> x;         // Узлы сетки
 
  public:
-	void build(const std::vector<std::pair<T, T>>& grid) {
+	void build(const std::vector<std::pair<T, T>>& grid, T left_sec_der, T right_sec_der) {
 		size_t n = grid.size();
 		if (n < 2) {
 			throw std::invalid_argument("Grid must contain at least two points.");
@@ -28,6 +28,7 @@ class CubicSpline {
 			x[i] = grid[i].first;
 			a[i] = grid[i].second;
 		}
+
 		std::vector<T> h(n - 1);
 		for (size_t i = 0; i < n - 1; ++i) {
 			h[i] = x[i + 1] - x[i];
@@ -35,23 +36,33 @@ class CubicSpline {
 				throw std::invalid_argument("Grid points must be sorted and unique.");
 			}
 		}
-		std::vector<T> sub_diag(n - 2);
-		std::vector<T> main_diag(n - 1);
-		std::vector<T> sup_diag(n - 2);
-		std::vector<T> rhs(n - 1);
-		main_diag[0] = 1;
-		main_diag[n - 1] = 1;
-		rhs[0] = 0;
-		rhs[n - 1] = 0;
+
+		std::vector<T> sub_diag(n - 1, 0);
+		std::vector<T> main_diag(n, 0);
+		std::vector<T> sup_diag(n - 1, 0);
+		std::vector<T> rhs(n, 0);
+
+		// Граничные условия
+		sub_diag[0]=0;
+		main_diag[0] = 2 * (h[0]+h[1]);
+		sup_diag[0] = h[1];
+		rhs[0] = (3 * ((a[2] - a[1]) / h[2] - (a[1] - a[0]) / h[1]) - h[0] * left_sec_der/2);
+
 		for (size_t i = 1; i < n - 1; ++i) {
 			sub_diag[i - 1] = h[i - 1];
 			main_diag[i] = 2 * (h[i - 1] + h[i]);
-			sup_diag[i - 1] = h[i];
+			sup_diag[i] = h[i];
 			rhs[i] = 3 * ((a[i + 1] - a[i]) / h[i] - (a[i] - a[i - 1]) / h[i - 1]);
 		}
+
+		main_diag[n - 1] = 2 * (h[n - 2]+h[n-3]);
+		sub_diag[n - 2] = h[n-2];
+		rhs[n - 1] = (3 *((a[n - 1] - a[n - 2]) / h[n - 2] - (a[n - 2] - a[n - 3]) / h[n - 2] )-h[n - 2]*right_sec_der/2 );
+
 		c.resize(n);
 		c = TridiagonalMatrixAlgorithm<T>(sub_diag, main_diag, sup_diag, rhs);
-		c[0] = c[n - 1] = 0;
+		c[0]=left_sec_der/2;
+		c[n-1]=right_sec_der/2;
 		b.resize(n - 1);
 		d.resize(n - 1);
 		for (size_t i = 0; i < n - 1; ++i) {
@@ -59,6 +70,9 @@ class CubicSpline {
 			d[i] = (c[i + 1] - c[i]) / (3 * h[i]);
 		}
 	}
+
+
+
 
 	T interpolate(T point) const {
 		if (x.empty()) {
