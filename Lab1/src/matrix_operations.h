@@ -209,6 +209,18 @@ std::vector<std::vector<T>> identityMatrix(size_t size) {
 	return identityMatrix;
 }
 
+template<typename T1, typename T2>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1, T2>& p) {
+	os << "(" << p.first << ", " << p.second << ")";
+	return os;
+}
+
+template<typename T1>
+std::ostream& operator<<(std::ostream& os, const std::pair<T1, int>& p) {
+	os << "(root:" << p.first << ", iteartions: " << p.second << ")";
+	return os;
+}
+
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 	os << "[";
@@ -221,6 +233,7 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 	os << "]";
 	return os;
 }
+
 
 template <typename T>
 void normalize(std::vector<T>& vec) {
