@@ -3,6 +3,7 @@
 #include <functional>
 #include <cmath>
 
+#include "../../Lab1/src/matrix_operations.h"
 #include "../../Lab3/src/grid_generators.h"
 
 template <typename T>
@@ -91,4 +92,75 @@ std::vector<std::pair<T, int>> newtonMethod(std::function<T(T)> func, T a, T b, 
 	}
 	return roots;
 }
+
+template <typename T>
+bool isPointAlreadyFound(const std::vector<std::pair<std::vector<T>, int>>& results, const std::vector<T>& point, T tolerance) {
+	for (const auto& result : results) {
+		if (compute2Norm(result.first - point) < tolerance) {
+			return true;
+		}
+	}
+	return false;
+}
+
+template <typename T>
+std::vector<std::pair<std::vector<T>, int>> newtonMethod(
+	const std::function<std::vector<T>(const std::vector<T>&)>& funcs,
+	T tolerance, int maxIterations,
+	const std::function<std::vector<T>(const std::pair<std::vector<std::vector<T>>, std::vector<T>>&)>& solve,
+	T ax, T bx, T nx, T ay, T by, T ny
+) {
+
+	T h = tolerance;
+	auto grid = generate_uniform_grid(ax, bx, nx, ay, by, ny);
+	std::vector<std::pair<std::vector<T>, int>> results;
+	results.reserve(grid.size());
+	auto compute_jacobian = [&](const std::vector<T>& x) {
+	  size_t n = x.size();
+	  std::vector<std::vector<T>> J(n, std::vector<T>(n));
+	  for (size_t i = 0; i < n; ++i) {
+		  std::vector<T> x_plus = x, x_minus = x;
+		  for (size_t j = 0; j < n; ++j) {
+			  x_plus[j] += h;
+			  x_minus[j] -= h;
+			  J[i][j] = (funcs(x_plus)[i] - funcs(x_minus)[i]) / (2 * h);
+			  x_plus[j] = x[j];
+			  x_minus[j] = x[j];
+		  }
+	  }
+	  return J;
+	};
+	for (const auto& point : grid) {
+		std::vector<T> x = {point.first, point.second};
+		int iterations = 0;
+		bool converged = false;
+
+		for (; iterations < maxIterations; ++iterations) {
+			std::vector<T> f = funcs(x);
+			if (compute2Norm(f) < tolerance) {
+				converged = true;
+				break;
+			}
+			std::vector<std::vector<T>> J = compute_jacobian(x);
+			std::vector<T> dx = solve({J, f});
+			if (dx.empty()){break;};
+			for (auto& dxi : dx) {
+				dxi = -dxi;
+			}
+			x=x+dx;
+			if (!(x[0] >= ax && x[0] <= bx) or !(x[1] >= ay && x[1] <= by)){
+				break;
+			}
+			if (compute2Norm(dx) < tolerance) {
+				converged = true;
+				if (!isPointAlreadyFound(results,x,tolerance)){
+					results.emplace_back(x, iterations);
+				}
+				break;
+			}
+		}
+	}
+	return results;
+}
+
 
