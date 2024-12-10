@@ -1,4 +1,8 @@
 #include <iostream>
+#include <cmath>
+#include <vector>
+#include <functional>
+#include <memory>
 #include "../../Lab1/src/matrix_operations.h"
 #include "../../Lab5/src/FindRoots.h"
 
