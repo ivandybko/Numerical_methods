@@ -40,4 +40,30 @@ std::unique_ptr<std::vector<std::pair<T, T>>> generate_chebyshev_grid(T a, T b, 
 	return points;
 };
 
+template <typename T>
+std::vector<std::pair<T, T>> generate_uniform_grid(
+	T ax, T bx, int nx, T ay, T by, int ny) {
+	if (nx < 2 || ny < 2) {
+		throw std::invalid_argument("Количество точек должно быть >= 2 в обоих направлениях.");
+	}
+	if (ax >= bx || ay >= by) {
+		throw std::invalid_argument("Левая граница должна быть меньше правой в обоих направлениях.");
+	}
+	std::vector<std::pair<T, T>> points;
+	points.reserve(nx * ny);
+
+	T hx = (bx - ax) / (nx - 1);
+	T hy = (by - ay) / (ny - 1);
+
+	for (int i = 0; i < nx; ++i) {
+		T x = ax + i * hx;
+		for (int j = 0; j < ny; ++j) {
+			T y = ay + j * hy;
+			points.emplace_back(x, y);
+		}
+	}
+
+	return points;
+}
+
 #endif //LAB3_SRC_GRID_GENERATORS_H_
