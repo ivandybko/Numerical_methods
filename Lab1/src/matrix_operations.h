@@ -222,6 +222,19 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T1, int>& p) {
 }
 
 template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::pair<std::vector<T>, int>& p) {
+	os << "(vector: [";
+	for (size_t i = 0; i < p.first.size(); ++i) {
+		os << p.first[i];
+		if (i != p.first.size() - 1) {
+			os << ", ";  // Разделитель между элементами
+		}
+	}
+	os << "], iterations: " << p.second << ")";
+	return os;
+}
+
+template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 	os << "[";
 	for (size_t i = 0; i < vec.size(); ++i) {
