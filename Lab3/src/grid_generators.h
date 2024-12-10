@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
+#include <memory>
 
 template <typename T>
 std::unique_ptr<std::vector<std::pair<T, T>>> generate_uniform_grid(T a, T b, int n, std::function<T(T)> func){
