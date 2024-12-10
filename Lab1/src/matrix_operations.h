@@ -234,6 +234,14 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 	return os;
 }
 
+template <typename T>
+T compute2Norm(const std::vector<T>& vec) {
+	T sum_of_squares = 0;
+	for (const T& value : vec) {
+		sum_of_squares += value * value;
+	}
+	return std::sqrt(sum_of_squares);
+}
 
 template <typename T>
 void normalize(std::vector<T>& vec) {
