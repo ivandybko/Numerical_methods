@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <iomanip>
 #include "grid_generators.h"
 #include "NewtonInterpolation.h"
 #include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
