@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
-#include "../../Lab1/src/TridiagonalMatrixAlgorithm.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/TridiagonalMatrixAlgorithm.h"
 
 template <typename T>
 class CubicSpline {

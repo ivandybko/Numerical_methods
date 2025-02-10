@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "../../Lab1/src/QR decomposition.h"
-#include "../../Lab1/src/matrix_operations.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/QR decomposition.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
 #include "HessenbergReduction.h"
 extern int N;
 extern int iter;

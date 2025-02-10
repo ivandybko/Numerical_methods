@@ -3,7 +3,7 @@
 #include <memory>
 #include "grid_generators.h"
 #include "NewtonInterpolation.h"
-#include "../../Lab1/src/matrix_operations.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
 #include "SplineInterpolation.h"
 template <typename T>
 void exportGridToFile(const std::unique_ptr<std::vector<std::pair<T, T>>>& grid, const std::string& filename) {

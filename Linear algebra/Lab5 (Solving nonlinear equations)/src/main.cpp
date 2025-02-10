@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include "../../Lab1/src/matrix_operations.h"
-#include "../../Lab5/src/FindRoots.h"
-#include "../../Lab1/src/Gauss.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
+#include "../../Lab5 (Solving nonlinear equations)/src/FindRoots.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/Gauss.h"
 
 
 //int main()

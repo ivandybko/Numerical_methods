@@ -7,7 +7,7 @@ add_executable(Lab_2 main.cpp
         "JacobiMethod.h"
         "SimpleIterationMethod.h"
         SeidelMethod.h
-        "../../Lab1/src/matrix_operations.h"
+        "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
         SuccessiveRelaxationMethod.h
         Solution.h
         StoppingCriteria.h)

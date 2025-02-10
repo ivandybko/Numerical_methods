@@ -4,9 +4,9 @@
 #include <vector>
 #include <memory>
 #include <random>
-#include "../../Lab1/src/Gauss.h"
-#include "../../Lab1/src/matrix_operations.h"
-#include "../../Lab2/src/StoppingCriteria.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/Gauss.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
+#include "../../Lab2 (Iterative methods for solving systems of linear equations)/src/StoppingCriteria.h"
 
 template <typename T>
 std::vector<T> generateRandomVector(int size, int min, int max) {

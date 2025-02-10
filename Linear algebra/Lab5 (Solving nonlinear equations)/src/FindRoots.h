@@ -4,7 +4,7 @@
 #include <cmath>
 #include <fstream>
 
-#include "../../Lab1/src/matrix_operations.h"
+#include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
 #include "../../Lab3/src/grid_generators.h"
 
 template <typename T>
