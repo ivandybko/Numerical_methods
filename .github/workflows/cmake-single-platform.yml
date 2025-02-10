@@ -35,44 +35,44 @@ jobs:
 
     # Сборка проекта Lab2
     - name: Configure CMake for Lab2 (Linear algebra)
-      run: cmake -S Lab2/src -B Lab2/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -S "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)/src" -B "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build Lab2 (Linear algebra)
-      run: cmake --build Lab2/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)/build" --config ${{env.BUILD_TYPE}}
 
     - name: Test Lab2 (Linear algebra)
-      working-directory: Lab2/build
+      working-directory: "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)"/build
       run: ctest -C ${{env.BUILD_TYPE}}
 
     # Сборка проекта Lab3
     - name: Configure CMake for Lab3 (Linear algebra)
-      run: cmake -S Lab3/src -B Lab3/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -S "Linear algebra/Lab3 (Solving interpolation problems)/src" -B "Linear algebra/Lab3 (Solving interpolation problems)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build Lab3 (Linear algebra)
-      run: cmake --build Lab3/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build "Linear algebra/Lab3 (Solving interpolation problems)/build" --config ${{env.BUILD_TYPE}}
 
     - name: Test Lab3 (Linear algebra)
-      working-directory: Lab3/build
+      working-directory: "Linear algebra/Lab3 (Solving interpolation problems)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
       
     # Сборка проекта Lab4
     - name: Configure CMake for Lab4 (Linear algebra)
-      run: cmake -S Lab4/src -B Lab4/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -S "Linear algebra/Lab4 (Solving the eigenvalue problem)/src" -B "Linear algebra/Lab4 (Solving the eigenvalue problem)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build Lab4 (Linear algebra)
-      run: cmake --build Lab4/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build "Linear algebra/Lab4 (Solving the eigenvalue problem)/build" --config ${{env.BUILD_TYPE}}
 
     - name: Test Lab4 (Linear algebra)
-      working-directory: Lab4/build
+      working-directory: "Linear algebra/Lab4 (Solving the eigenvalue problem)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
       
       # Сборка проекта Lab5
     - name: Configure CMake for Lab5 (Linear algebra)
-      run: cmake -S Lab5/src -B Lab5/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -S "Linear algebra/Lab5 (Solving nonlinear equations)/src" -B "Linear algebra/Lab5 (Solving nonlinear equations)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build Lab5 (Linear algebra)
-      run: cmake --build Lab5/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build "Linear algebra/Lab5 (Solving nonlinear equations)/build" --config ${{env.BUILD_TYPE}}
 
     - name: Test Lab5 (Linear algebra)
-      working-directory: Lab5/build
+      working-directory: "Linear algebra/Lab5 (Solving nonlinear equations)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
