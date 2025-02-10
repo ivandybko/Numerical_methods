@@ -23,56 +23,56 @@ jobs:
     - uses: actions/checkout@v4
 
     # Сборка проекта Lab1
-    - name: Configure CMake for Lab1
-      run: cmake -S Lab1/src -B Lab1/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+    - name: Configure CMake for Lab1 (Linear algebra)
+      run: cmake -S "Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/src" -B "Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build Lab1
-      run: cmake --build Lab1/build --config ${{env.BUILD_TYPE}}
+    - name: Build Lab1 (Linear algebra)
+      run: cmake --build "Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/build" --config ${{env.BUILD_TYPE}}
 
-    - name: Test Lab1
-      working-directory: Lab1/build
+    - name: Test Lab1 (Linear algebra)
+      working-directory: "Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
 
     # Сборка проекта Lab2
-    - name: Configure CMake for Lab2
+    - name: Configure CMake for Lab2 (Linear algebra)
       run: cmake -S Lab2/src -B Lab2/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build Lab2
+    - name: Build Lab2 (Linear algebra)
       run: cmake --build Lab2/build --config ${{env.BUILD_TYPE}}
 
-    - name: Test Lab2
+    - name: Test Lab2 (Linear algebra)
       working-directory: Lab2/build
       run: ctest -C ${{env.BUILD_TYPE}}
 
     # Сборка проекта Lab3
-    - name: Configure CMake for Lab3
+    - name: Configure CMake for Lab3 (Linear algebra)
       run: cmake -S Lab3/src -B Lab3/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build Lab3
+    - name: Build Lab3 (Linear algebra)
       run: cmake --build Lab3/build --config ${{env.BUILD_TYPE}}
 
-    - name: Test Lab3
+    - name: Test Lab3 (Linear algebra)
       working-directory: Lab3/build
       run: ctest -C ${{env.BUILD_TYPE}}
       
     # Сборка проекта Lab4
-    - name: Configure CMake for Lab4
+    - name: Configure CMake for Lab4 (Linear algebra)
       run: cmake -S Lab4/src -B Lab4/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build Lab4
+    - name: Build Lab4 (Linear algebra)
       run: cmake --build Lab4/build --config ${{env.BUILD_TYPE}}
 
-    - name: Test Lab4
+    - name: Test Lab4 (Linear algebra)
       working-directory: Lab4/build
       run: ctest -C ${{env.BUILD_TYPE}}
       
       # Сборка проекта Lab5
-    - name: Configure CMake for Lab5
+    - name: Configure CMake for Lab5 (Linear algebra)
       run: cmake -S Lab5/src -B Lab5/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build Lab5
+    - name: Build Lab5 (Linear algebra)
       run: cmake --build Lab5/build --config ${{env.BUILD_TYPE}}
 
-    - name: Test Lab5
+    - name: Test Lab5 (Linear algebra)
       working-directory: Lab5/build
       run: ctest -C ${{env.BUILD_TYPE}}
