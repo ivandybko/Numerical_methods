@@ -5,7 +5,7 @@
 #include <fstream>
 
 #include "../../Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
-#include "../../Lab3/src/grid_generators.h"
+#include "../../Lab3 (Solving interpolation problems)/src/grid_generators.h"
 
 template <typename T>
 std::vector<std::pair<T, T>> rootIntervals(
