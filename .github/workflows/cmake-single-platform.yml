@@ -41,7 +41,7 @@ jobs:
       run: cmake --build "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)/build" --config ${{env.BUILD_TYPE}}
 
     - name: Test Lab2 (Linear algebra)
-      working-directory: "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)"/build
+      working-directory: "Linear algebra/Lab2 (Iterative methods for solving systems of linear equations)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
 
     # Сборка проекта Lab3
