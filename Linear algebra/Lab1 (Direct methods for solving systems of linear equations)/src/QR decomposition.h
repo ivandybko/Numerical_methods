@@ -1,0 +1,95 @@
+#ifndef LAB_1_SRC_QR_DECOMPOSITION_H_
+#define LAB_1_SRC_QR_DECOMPOSITION_H_
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <cmath>
+#include <memory>
+#include "matrix_operations.h"
+
+template <typename T>
+void rotate(std::vector<std::vector<T>>& transit, std::vector<std::vector<T>>& A, int i, int j) {
+	T c = A[i][i]/std::sqrt(A[i][i]*A[i][i]+A[j][i]*A[j][i]);
+	T s = A[j][i]/std::sqrt(A[i][i]*A[i][i]+A[j][i]*A[j][i]);
+	size_t n = A.size();
+	for (int col = 0; col < n; ++col) {
+		T temp = c * A[i][col] + s * A[j][col];
+		A[j][col] = -s * A[i][col] + c * A[j][col];
+		A[i][col] = temp;
+		T temp1=c * transit[i][col] + s * transit[j][col];
+		T temp2=(-s) * transit[i][col] + c * transit[j][col];
+		transit[i][col] = temp1;
+		transit[j][col] = temp2;
+	}
+}
+
+template <typename T>
+std::vector<T> QRdecompostition(const std::pair<std::vector<std::vector<T>>, std::vector<T>> &data){
+	auto A = data.first;
+	auto b = data.second;
+	size_t n = A.size();
+	std::vector<std::vector<T>> transit(n,std::vector<T>(n,0));
+	for (int i = 0; i < n; ++i)
+	{
+		transit[i][i]=1;
+	}
+	for (int i = 0; i < n-1; ++i)
+	{
+		for (int j = i+1; j < n; ++j)
+		{
+			if (A[j][i] != 0 or A[i][i]!=0){
+				rotate(transit,A,i,j);
+			}
+		}
+	}
+	std::vector<T> x(n);
+	std::vector<T> b1(n,0);
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			b1[i]+=transit[i][j]*b[j];
+		}
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		if (A[i][i] == 0){
+			return std::vector<T>();
+		}
+	}
+	x[n-1]=b1[n-1]/A[n-1][n-1];
+	for (size_t i = n-1; i-- > 0; )
+	{
+		T sum{0};
+		for (size_t j = i; j < n; ++j)
+		{
+			sum+=A[i][j]*x[j];
+		}
+		x[i]=(b1[i]-sum)/A[i][i];
+	}
+	transpose(transit);
+	return x;
+}
+
+template <typename T>
+std::unique_ptr<std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>>> QRdecomposition(const std::vector<std::vector<T>>& matrix){
+	auto A = matrix;
+	size_t n = A.size();
+	std::vector<std::vector<T>> transit(n,std::vector<T>(n,0));
+	for (int i = 0; i < n; ++i)
+	{
+		transit[i][i]=1;
+	}
+	for (int i = 0; i < n-1; ++i)
+	{
+		for (int j = i+1; j < n; ++j)
+		{
+			if (A[j][i] != 0 or A[i][i]!=0){
+				rotate(transit,A,i,j);
+			}
+		}
+	}
+	transpose(transit);
+	return std::make_unique<std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>>>(std::move(transit), std::move(A));
+}
+#endif //LAB_1_SRC_QR_DECOMPOSITION_H_

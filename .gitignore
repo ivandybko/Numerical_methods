@@ -13,3 +13,5 @@
 *.iml
 /Lab2/.idea
 /Lab2/doc
+*.cmake
+
