@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <cmath>
 template <typename T>
 std::vector<std::vector<T>>* inverse(const std::vector<std::vector<T>>& A){
 	size_t n = A.size();
