@@ -187,6 +187,15 @@ T operator*(const std::vector<T>& v1, const std::vector<T>& v2) {
 }
 
 template <typename T>
+std::vector<T> operator+(const std::vector<T>& vec, T scalar) {
+	std::vector<T> result(vec.size());
+	for (size_t i = 0; i < vec.size(); ++i) {
+		result[i] = vec[i] + scalar;
+	}
+	return result;
+}
+
+template <typename T>
 std::vector<std::vector<T>> operator+(const std::vector<std::vector<T>>& matrix1, const std::vector<std::vector<T>>& matrix2) {
 	if (matrix1.size() != matrix2.size() || matrix1[0].size() != matrix2[0].size()) {
 		throw std::invalid_argument("Размеры матриц должны совпадать для сложения.");
