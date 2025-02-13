@@ -122,6 +122,16 @@ std::pair<T, int> newtonMethod(std::function<T(T)> func, std::function<T(T)> der
 }
 
 template <typename T>
+bool isPointAlreadyFound(const std::vector<std::vector<T>>& results, const std::vector<T>& point, T tolerance) {
+	for (const auto& result : results) {
+		if (compute2Norm(result - point) < tolerance) {
+			return true;
+		}
+	}
+	return false;
+}
+
+template <typename T>
 bool isPointAlreadyFound(const std::vector<std::pair<std::vector<T>, int>>& results, const std::vector<T>& point, T tolerance) {
 	for (const auto& result : results) {
 		if (compute2Norm(result.first - point) < tolerance) {
@@ -168,12 +178,10 @@ std::vector<std::pair<std::vector<T>, int>> newtonMethod(
 	for (const auto& point : grid) {
 		std::vector<T> x = {point.first, point.second};
 		int iterations = 0;
-		bool converged = false;
 
 		for (; iterations < maxIterations; ++iterations) {
 			std::vector<T> f = funcs(x);
 			if (compute2Norm(f) < tolerance) {
-				converged = true;
 				break;
 			}
 			std::vector<std::vector<T>> J = compute_jacobian(x);
@@ -189,7 +197,6 @@ std::vector<std::pair<std::vector<T>, int>> newtonMethod(
 
 			}
 			if (compute2Norm(dx) < tolerance) {
-				converged = true;
 				if (!isPointAlreadyFound(results,x,tolerance)){
 					results.emplace_back(x, iterations);
 				}
@@ -202,6 +209,76 @@ std::vector<std::pair<std::vector<T>, int>> newtonMethod(
 	}
 	outputFileStream.close();
 	return results;
+}
+
+template <typename T>
+std::vector<std::vector<T>> newtonMethod(
+    const std::function<std::vector<T>(const std::vector<T>&)>& funcs,
+    T tolerance,
+    int maxIterations,
+    const std::function<std::vector<T>(const std::pair<std::vector<std::vector<T>>, std::vector<T>>&)>& solve,
+    const std::vector<std::pair<T, T>>& bounds,
+    const std::vector<size_t>& subdivisions
+) {
+    T h = tolerance;
+    auto grid = generate_nd_uniform_grid(bounds, subdivisions);
+
+    std::vector<std::vector<T>> results;
+    results.reserve(grid.size());
+
+    auto computeJacobian = [&](const std::vector<T>& x) -> std::vector<std::vector<T>> {
+        size_t n = x.size();
+        std::vector<std::vector<T>> J(n, std::vector<T>(n, 0));
+        for (size_t i = 0; i < n; ++i) {
+            for (size_t j = 0; j < n; ++j) {
+                auto x_plus  = x;
+                auto x_minus = x;
+                x_plus[j]  += h;
+                x_minus[j] -= h;
+                J[i][j] = (funcs(x_plus)[i] - funcs(x_minus)[i]) / (2 * h);
+            }
+        }
+        return J;
+    };
+
+    for (const auto& point : grid) {
+        std::vector<T> x = point;
+        int iterations = 0;
+        for (; iterations < maxIterations; ++iterations) {
+            auto f_val = funcs(x);
+            if (compute2Norm(f_val) < tolerance) {
+                break;
+            }
+            auto J = computeJacobian(x);
+            auto dx = solve({ J, f_val });
+            if (dx.empty()) {
+                break;
+            }
+            for (auto& dxi : dx) {
+                dxi = -dxi;
+            }
+            x = x + dx;
+            bool inBounds = true;
+            for (size_t i = 0; i < x.size(); ++i) {
+                if (x[i] < bounds[i].first || x[i] > bounds[i].second) {
+                    inBounds = false;
+                    break;
+                }
+            }
+            if (!inBounds) {
+                iterations = maxIterations + 10;
+                break;
+            }
+        	f_val = funcs(x);
+        	if (compute2Norm(f_val) < tolerance || compute2Norm(dx) < tolerance) {
+        		if (!isPointAlreadyFound(results, x, tolerance)) {
+        			results.emplace_back(x);
+        		}
+        		break;
+        	}
+        }
+    }
+    return results;
 }
 
 
