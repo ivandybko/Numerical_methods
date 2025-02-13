@@ -67,4 +67,40 @@ std::vector<std::pair<T, T>> generate_uniform_grid(
 	return points;
 }
 
+template <typename T>
+std::vector<std::vector<T>> generate_nd_uniform_grid(
+	const std::vector<std::pair<T, T>>& bounds,
+	const std::vector<size_t>& subdivisions
+) {
+	size_t dims = bounds.size();
+	size_t totalPoints = 1;
+	std::vector<T> steps(dims);
+
+	for (size_t d = 0; d < dims; ++d) {
+		totalPoints *= subdivisions[d];
+		if (subdivisions[d] > 1)
+			steps[d] = (bounds[d].second - bounds[d].first) / static_cast<T>(subdivisions[d] - 1);
+		else
+			steps[d] = T{};
+	}
+
+	std::vector<size_t> strides(dims, 1);
+	for (size_t d = 1; d < dims; ++d) {
+		strides[d] = strides[d - 1] * subdivisions[d - 1];
+	}
+
+	std::vector<std::vector<T>> grid;
+	grid.reserve(totalPoints);
+
+	for (size_t index = 0; index < totalPoints; ++index) {
+		std::vector<T> point(dims);
+		for (size_t d = 0; d < dims; ++d) {
+			size_t coordIndex = (index / strides[d]) % subdivisions[d];
+			point[d] = bounds[d].first + static_cast<T>(coordIndex) * steps[d];
+		}
+		grid.push_back(std::move(point));
+	}
+
+	return std::move(grid);
+}
 #endif //LAB3_SRC_GRID_GENERATORS_H_
