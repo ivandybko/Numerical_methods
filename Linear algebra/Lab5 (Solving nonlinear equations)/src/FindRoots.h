@@ -221,7 +221,7 @@ std::vector<std::vector<T>> newtonMethod(
     const std::vector<size_t>& subdivisions
 ) {
     T h = tolerance;
-    auto grid = generate_nd_uniform_grid(bounds, subdivisions);
+    auto grid = generate_nd_uniform_grid<T>(bounds, subdivisions);
 
     std::vector<std::vector<T>> results;
     results.reserve(grid.size());
