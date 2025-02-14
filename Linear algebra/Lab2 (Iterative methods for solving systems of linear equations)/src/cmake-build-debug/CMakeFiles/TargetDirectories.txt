@@ -1,3 +1,0 @@
-/Users/ivandybko/Projects/Numerical_methods/Lab2/src/cmake-build-debug/CMakeFiles/Lab_2.dir
-/Users/ivandybko/Projects/Numerical_methods/Lab2/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ivandybko/Projects/Numerical_methods/Lab2/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
