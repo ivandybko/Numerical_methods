@@ -5,7 +5,7 @@
 #include <vector>
 
 template<typename T>
-std::vector<std::vector<T>> RungeKutta4System(
+std::vector<std::vector<T>> runge_kutta4(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
 	T t0, const std::vector<T>& u0, double t_end, double tau){
 	size_t n = f.size();

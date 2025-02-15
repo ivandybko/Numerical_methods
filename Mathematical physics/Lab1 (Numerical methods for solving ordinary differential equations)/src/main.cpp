@@ -40,7 +40,7 @@ int main()
 	// };
 
 	std::vector<double> u0 = {1.0, 1.0}; double tend=0.5;
-	std::vector<std::vector<double>> result = RungeKutta4System(funcs, 0.0, u0, tend, 0.05);
+	std::vector<std::vector<double>> result = runge_kutta4(funcs, 0.0, u0, tend, 0.05);
 	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/runge.txt");
 	for (const auto & i : result)
 	{
