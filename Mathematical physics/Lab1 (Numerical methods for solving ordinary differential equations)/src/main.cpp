@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <fstream>
+#include <numeric>
 #include "../../../Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
 #include "../../../Linear algebra/Lab3 (Solving interpolation problems)/src/grid_generators.h"
 #include "runge_kutta_4th_order.h"
 #include "euler.h"
-#include <fstream>
-
 #include "adams_bashforth_4th_order.h"
 
 void exportData(const std::vector<std::vector<double>>& data, const std::string& filename) {
@@ -28,6 +29,66 @@ void exportData(const std::vector<std::vector<double>>& data, const std::string&
 	}
 
 	outFile.close();
+}
+
+template <typename T>
+void AitkensProcess(T q, T tests, std::function<std::vector<std::vector<T>>(const std::vector<std::function<T(T, const std::vector<T>&)>>&, T, const std::vector<T>&, T, T)> solver, const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
+	T t0, const std::vector<T>& u0, T t_end, T tau) {
+	size_t n = f.size();
+	std::vector<std::vector<std::vector<T>>> data;
+	for (size_t i = 0; i < tests; ++i) {
+		T current_tau = tau * pow(q, i);
+		// std::cout << "Шаг tau_" << i << " = " << current_tau << '\n';
+		std::vector<std::vector<T>> result = solver(f, t0, u0, t_end, current_tau);
+		data.push_back(std::move(result));
+	}
+	std::vector<std::vector<T>> errors(tests);
+	for (size_t i = 0; i < tests; ++i) {
+		// Ошибку вычисляем для каждого компонента решения
+		errors[i].resize(n);
+		for (size_t j = 0; j < n; ++j) {
+			errors[i][j] = std::abs(data[i][j].back() - data.back()[j].back());
+		}
+	}
+
+	for (size_t i = 0; i < tests - 2; ++i) {
+		std::cout << "Порядок сходимости p_" << i << ": ";
+		for (size_t j = 0; j < errors[i].size(); ++j) {
+			T p = log(errors[i + 1][j] / errors[i][j]) / log(q);
+			std::cout << "[переменная " << j << ": " << p << "] ";
+		}
+		std::cout << '\n';
+	}
+}
+template <typename T>
+
+void AitkensProcess(T q, T tests, std::function<std::vector<std::vector<T>>(const std::vector<std::function<T(T, const std::vector<T>&)>>&, T, const std::vector<T>&, T, T, bool)> solver, const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
+	T t0, const std::vector<T>& u0, T t_end, T tau, bool predictor) {
+	size_t n = f.size();
+	std::vector<std::vector<std::vector<T>>> data;
+	for (size_t i = 0; i < tests; ++i) {
+		T current_tau = tau * pow(q, i);
+		// std::cout << "Шаг tau_" << i << " = " << current_tau << '\n';
+		std::vector<std::vector<T>> result = solver(f, t0, u0, t_end, current_tau, predictor);
+		data.push_back(std::move(result));
+	}
+	std::vector<std::vector<T>> errors(tests);
+	for (size_t i = 0; i < tests; ++i) {
+		// Ошибку вычисляем для каждого компонента решения
+		errors[i].resize(n);
+		for (size_t j = 0; j < n; ++j) {
+			errors[i][j] = std::abs(data[i][j].back() - data.back()[j].back());
+		}
+	}
+
+	for (size_t i = 0; i < tests - 2; ++i) {
+		std::cout << "Порядок сходимости p_" << i << ": ";
+		for (size_t j = 0; j < errors[i].size(); ++j) {
+			T p = log(errors[i + 1][j] / errors[i][j]) / log(q);
+			std::cout << "[переменная " << j << ": " << p << "] ";
+		}
+		std::cout << '\n';
+	}
 }
 
 int main()
@@ -84,4 +145,16 @@ int main()
 	{
 		std::cout << i << std::endl;
 	}
+	std::cout << "Явный метод Эйлера" << std::endl;
+	AitkensProcess<double>(0.5,9,explicit_euler<double>,funcs, 0.0, u0, tend, 0.1);
+	std::cout << "Неявный метод Эйлера" << std::endl;
+	AitkensProcess<double>(0.5,9,implicit_euler<double>,funcs, 0.0, u0, tend, 0.1);
+	std::cout << "Симметричная схема" << std::endl;
+	AitkensProcess<double>(0.5,9,trapezoidal_rule_method<double>,funcs, 0.0, u0, tend, 0.1);
+	std::cout << "Метод Рунге-Кутты" << std::endl;
+	AitkensProcess<double>(0.5,9,runge_kutta4<double>,funcs, 0.0, u0, tend, 0.1);
+	std::cout << "Метод Адамса" << std::endl;
+	AitkensProcess<double>(0.5,9,adams_bashforth<double>,funcs, 0.0, u0, tend, 0.1, false);
+	std::cout << "Метод предиктор-корректор" << std::endl;
+	AitkensProcess<double>(0.5,9,adams_bashforth<double>,funcs, 0.0, u0, tend, 0.1, true);
 }
