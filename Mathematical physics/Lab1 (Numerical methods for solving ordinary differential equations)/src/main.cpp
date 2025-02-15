@@ -42,33 +42,45 @@ int main()
 	// };
 
 	std::vector<double> u0 = {1.0, 1.0}; double tend=1;
-	std::vector<std::vector<double>> result = runge_kutta4(funcs, 0.0, u0, tend, 0.1);
+	std::cout << "Runge-Kutta 4th order method" << std::endl;
+	std::vector<std::vector<double>> result = runge_kutta4(funcs, 0.0, u0, tend, 0.05);
 	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/runge.txt");
 	for (const auto & i : result)
 	{
 		std::cout << i << std::endl;
 	}
-	std::vector<std::vector<double>> result2 = explicit_euler(funcs, 0.0, u0, tend, 0.1);
-	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/explicit_euler.txt");
+	std::cout << "Explicit Euler method" << std::endl;
+	std::vector<std::vector<double>> result2 = explicit_euler(funcs, 0.0, u0, tend, 0.05);
+	exportData(result2, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/explicit_euler.txt");
 	for (const auto & i : result2)
 	{
 		std::cout << i << std::endl;
 	}
-	std::vector<std::vector<double>> result3 = implicit_euler(funcs, 0.0, u0, tend, 0.1);
-	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/implicit_euler.txt");
+	std::cout << "Implicit Euler method" << std::endl;
+	std::vector<std::vector<double>> result3 = implicit_euler(funcs, 0.0, u0, tend, 0.05);
+	exportData(result3, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/implicit_euler.txt");
 	for (const auto & i : result3)
 	{
 		std::cout << i << std::endl;
 	}
-	std::vector<std::vector<double>> result4 = trapezoidal_rule_method(funcs, 0.0, u0, tend, 0.1);
-	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/symmetric.txt");
+	std::cout << "Trapezoidal rule method" << std::endl;
+	std::vector<std::vector<double>> result4 = trapezoidal_rule_method(funcs, 0.0, u0, tend, 0.05);
+	exportData(result4, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/symmetric.txt");
 	for (const auto & i : result4)
 	{
 		std::cout << i << std::endl;
 	}
-	std::vector<std::vector<double>> result5 = adams_bashforth(funcs, 0.0, u0, tend, 0.1);
-	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/adams_bashforth.txt");
+	std::cout << "Adams-Bashforth 4th order method" << std::endl;
+	std::vector<std::vector<double>> result5 = adams_bashforth(funcs, 0.0, u0, tend, 0.05);
+	exportData(result5, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/adams_bashforth.txt");
 	for (const auto & i : result5)
+	{
+		std::cout << i << std::endl;
+	}
+	std::cout << "Adams-Bashforth 4th order method with predictor-corrector" << std::endl;
+	std::vector<std::vector<double>> result6 = adams_bashforth(funcs, 0.0, u0, tend, 0.05, true);
+	exportData(result6, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/adams_bashforth_with_predictor_corrector.txt");
+	for (const auto & i : result6)
 	{
 		std::cout << i << std::endl;
 	}
