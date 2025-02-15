@@ -40,7 +40,7 @@ std::vector<std::vector<T>> runge_kutta4(
 		}
 		for(int j = 0; j < n; j++)
 		{
-			solution[j][i+1]=solution[j][i]+tau/6*(k1[j]+2*k2[j]+2*k3[j]+k4[j]);
+			solution[j][i+1]=solution[j][i]+tau/6.0*(k1[j]+2*k2[j]+2*k3[j]+k4[j]);
 		}
 	}
 	return solution;
