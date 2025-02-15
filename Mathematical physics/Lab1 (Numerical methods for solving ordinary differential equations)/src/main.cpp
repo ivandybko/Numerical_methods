@@ -58,6 +58,12 @@ int main()
 	{
 		std::cout << i << std::endl;
 	}
+	std::vector<std::vector<double>> result4 = trapezoidal_rule_method(funcs, 0.0, u0, tend, 0.05);
+	exportData(result, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/data/test1/symmetric.txt");
+	for (const auto & i : result4)
+	{
+		std::cout << i << std::endl;
+	}
 
 
 }
