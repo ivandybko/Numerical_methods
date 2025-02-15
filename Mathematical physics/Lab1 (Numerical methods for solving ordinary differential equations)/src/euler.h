@@ -53,16 +53,16 @@ std::vector<std::vector<T>> implicit_euler(
 		std::vector<std::pair<T, T>> bounds(n);
 		for(int j = 0; j < n; j++)
 		{
-			bounds[j]=std::pair<T,T>(solution[j][i]-tau*y[j],solution[j][i]+tau*y[j]);
+			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*y[j],solution[j][i]+10*tau*y[j]);
 			subdivisions[j]=10;
 		}
 		while (true){
-			auto data=newtonMethod<double>(F,tau,1000, Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<double>(F,tau*tau,1000, Gauss<double>, bounds, subdivisions);
 			if (data.empty())
 			{
 				for(int j = 0; j < n; j++)
 				{
-					bounds[j]=std::pair<T,T>(bounds[j].first-2*tau*solution[j][i],bounds[j].second+2*tau*solution[j][i]);
+					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*solution[j][i],bounds[j].second+10*tau*solution[j][i]);
 					subdivisions[j]*=2;
 				}
 			}
@@ -71,6 +71,7 @@ std::vector<std::vector<T>> implicit_euler(
 				for(int j = 0; j < n; j++)
 				{
 					solution[j].emplace_back(data[0][j]);
+					y[j]=solution[j][i+1];
 				}
 				break;
 			}
@@ -104,7 +105,7 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 		std::vector<std::pair<T, T>> bounds(n);
 		for(int j = 0; j < n; j++)
 		{
-			bounds[j]=std::pair<T,T>(solution[j][i]-tau*y[j],solution[j][i]+tau*y[j]);
+			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*y[j],solution[j][i]+10*tau*y[j]);
 			subdivisions[j]=10;
 		}
 		while (true){
@@ -113,7 +114,7 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 			{
 				for(int j = 0; j < n; j++)
 				{
-					bounds[j]=std::pair<T,T>(bounds[j].first-2*tau*solution[j][i],bounds[j].second+2*tau*solution[j][i]);
+					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*solution[j][i],bounds[j].second+10*tau*solution[j][i]);
 					subdivisions[j]*=2;
 				}
 			}
@@ -122,6 +123,7 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 				for(int j = 0; j < n; j++)
 				{
 					solution[j].emplace_back(data[0][j]);
+					y[j]=solution[j][i+1];
 				}
 				break;
 			}
