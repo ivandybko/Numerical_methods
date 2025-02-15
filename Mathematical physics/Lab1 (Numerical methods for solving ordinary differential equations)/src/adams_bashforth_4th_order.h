@@ -6,7 +6,7 @@
 template<typename T>
 std::vector<std::vector<T>> adams_bashforth(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
-	T t0, const std::vector<T>& u0, double t_end, double tau, bool predictor_corrector = false){
+	T t0, const std::vector<T>& u0, T t_end, T tau, bool predictor_corrector = false){
 	size_t n = f.size(); T t;
 	size_t N =(t_end-t0)/tau+1;
 	auto solution = runge_kutta4(f, t0, u0, t0+3*tau, tau);

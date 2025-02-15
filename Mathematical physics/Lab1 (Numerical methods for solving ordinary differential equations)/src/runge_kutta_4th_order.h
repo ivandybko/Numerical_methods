@@ -7,7 +7,7 @@
 template<typename T>
 std::vector<std::vector<T>> runge_kutta4(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
-	T t0, const std::vector<T>& u0, double t_end, double tau){
+	T t0, const std::vector<T>& u0, T t_end, T tau){
 	size_t n = f.size();
 	size_t N =(t_end-t0)/tau+1;
 	std::vector<T> k1(n),k2(n),k3(n),k4(n);

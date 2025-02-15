@@ -7,7 +7,7 @@
 template <typename T>
 std::vector<std::vector<T>> explicit_euler(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
-	T t0, const std::vector<T>& u0, double t_end, double tau){
+	T t0, const std::vector<T>& u0, T t_end, T tau){
 	size_t n = f.size();
 	size_t N =std::round((t_end-t0)/tau+1);
 	std::vector<std::vector<T>> solution(n,std::vector<T>(N));
@@ -32,7 +32,7 @@ std::vector<std::vector<T>> explicit_euler(
 template <typename T>
 std::vector<std::vector<T>> implicit_euler(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
-	T t0, const std::vector<T>& u0, double t_end, double tau){
+	T t0, const std::vector<T>& u0, T t_end, T tau){
 	size_t n = f.size();
 	size_t N =std::round((t_end-t0)/tau+1);
 	std::vector<std::vector<T>> solution(n,std::vector<T>(1)); T t;
@@ -57,7 +57,7 @@ std::vector<std::vector<T>> implicit_euler(
 			subdivisions[j]=10;
 		}
 		while (true){
-			auto data=newtonMethod<double>(F,tau*tau,1000, Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<T>(F,tau*tau,1000, Gauss<double>, bounds, subdivisions);
 			if (data.empty())
 			{
 				for(int j = 0; j < n; j++)
@@ -83,7 +83,7 @@ std::vector<std::vector<T>> implicit_euler(
 template <typename T>
 std::vector<std::vector<T>> trapezoidal_rule_method(
 	const std::vector<std::function<T(T, const std::vector<T>&)>>& f,
-	T t0, const std::vector<T>& u0, double t_end, double tau){
+	T t0, const std::vector<T>& u0, T t_end, T tau){
 	size_t n = f.size();
 	size_t N =std::round((t_end-t0)/tau+1);
 	std::vector<std::vector<T>> solution(n,std::vector<T>(1)); T t;
@@ -109,7 +109,7 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 			subdivisions[j]=10;
 		}
 		while (true){
-			auto data=newtonMethod<double>(F,tau,1000,Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<T>(F,tau,1000,Gauss<double>, bounds, subdivisions);
 			if (data.empty())
 			{
 				for(int j = 0; j < n; j++)
