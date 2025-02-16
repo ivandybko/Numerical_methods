@@ -16,3 +16,5 @@
 *.cmake
 
 /Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/src/cmake-build-debug
+Linear algebra/Lab5 (Solving nonlinear equations)/src/Graph.nb
+Linear algebra/Lab3 (Solving interpolation problems)/src/SolutionDifferenceEvaluator.nb
