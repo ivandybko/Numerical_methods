@@ -2,6 +2,7 @@
 #define EULER_H
 #include <functional>
 #include <vector>
+#include "../../../Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/src/matrix_operations.h"
 #include "../../../Linear algebra/Lab1 (Direct methods for solving systems of linear equations)/src/Gauss.h"
 #include "../../../Linear algebra/Lab5 (Solving nonlinear equations)/src/FindRoots.h"
 template <typename T>
@@ -51,18 +52,21 @@ std::vector<std::vector<T>> implicit_euler(
 		t=t0+i*tau;
 		std::vector<size_t> subdivisions(n);
 		std::vector<std::pair<T, T>> bounds(n);
+		// std::cout << i << std::endl;
 		for(int j = 0; j < n; j++)
 		{
-			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*y[j],solution[j][i]+10*tau*y[j]);
+			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*(abs(y[j]+1)),solution[j][i]+10*tau*(abs(y[j]+1)));
 			subdivisions[j]=10;
 		}
 		while (true){
-			auto data=newtonMethod<T>(F,tau*tau,1000, Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<T>(F,tau,1000, Gauss<double>, bounds, subdivisions);
+			// std::cout << bounds << std::endl;
+			// std::cout << data << std::endl;
 			if (data.empty())
 			{
 				for(int j = 0; j < n; j++)
 				{
-					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*solution[j][i],bounds[j].second+10*tau*solution[j][i]);
+					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*(abs(solution[j][i])+1),bounds[j].second+10*tau*(abs(solution[j][i])+1));
 					subdivisions[j]*=2;
 				}
 			}
@@ -96,6 +100,10 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 			T f_val_cur = f[i](t, y);
 			residual[i] = y_next[i] - y[i] - tau/2 * f_val - tau/2 * f_val_cur;
 		}
+		// if (compute2Norm(residual) < tau)
+		// {
+		// 	std::cout << compute2Norm(residual) << std::endl;
+		// }
 		return residual;
 	};
 	for(int i = 0; i < N-1; i++)
@@ -105,16 +113,19 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 		std::vector<std::pair<T, T>> bounds(n);
 		for(int j = 0; j < n; j++)
 		{
-			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*y[j],solution[j][i]+10*tau*y[j]);
+			bounds[j]=std::pair<T,T>(solution[j][i]-10*tau*(abs(y[j]+1)),solution[j][i]+10*tau*(abs(y[j]+1)));
 			subdivisions[j]=10;
 		}
+		// std::cout<< i << std::endl;
 		while (true){
 			auto data=newtonMethod<T>(F,tau,1000,Gauss<double>, bounds, subdivisions);
+			// std::cout << bounds << std::endl;
+			// std::cout << data << std::endl;
 			if (data.empty())
 			{
 				for(int j = 0; j < n; j++)
 				{
-					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*solution[j][i],bounds[j].second+10*tau*solution[j][i]);
+					bounds[j]=std::pair<T,T>(bounds[j].first-10*tau*(abs(solution[j][i])+1),bounds[j].second+10*tau*(abs(solution[j][i])+1));
 					subdivisions[j]*=2;
 				}
 			}
