@@ -193,7 +193,7 @@ int main()
 	std::cout << "Симметричная схема" << std::endl;
 	AitkensProcess<double>(0.5,9,trapezoidal_rule_method<double>,funcs, 0.0, u0, tend, 0.05);
 	std::cout << "Метод Рунге-Кутты" << std::endl;
-	AitkensProcess<double>(0.5,9,runge_kutta4<double>,funcs, 0.0, u0, tend, 0.05);
+	AitkensProcess<double>(0.5,9,runge_kutta4<double>,funcs, 0.0, u0, tend, 0.05, true);
 	std::cout << "Метод Адамса" << std::endl;
 	AitkensProcess<double>(0.5,9,adams_bashforth<double>,funcs, 0.0, u0, tend, 0.05, false);
 	std::cout << "Метод предиктор-корректор" << std::endl;
