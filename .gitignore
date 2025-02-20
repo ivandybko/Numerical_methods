@@ -18,3 +18,9 @@
 /Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/src/cmake-build-debug
 Linear algebra/Lab5 (Solving nonlinear equations)/src/Graph.nb
 Linear algebra/Lab3 (Solving interpolation problems)/src/SolutionDifferenceEvaluator.nb
+*.txt
+*.nb
+/Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/doc
+Mathematical physics/\[Галанин М.П., Савенков Е.Б.\] Методы численного анализа математических моделей.pdf
+Linear algebra/MetVich1_2017.pdf
+Mathematical physics/MetVich2-2017beta.pdf
