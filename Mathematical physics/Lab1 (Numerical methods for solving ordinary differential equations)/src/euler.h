@@ -60,7 +60,7 @@ std::vector<std::vector<T>> implicit_euler(
 			subdivisions[j]=boundary_expansion;
 		}
 		while (true){
-			auto data=newtonMethod<T>(residual_function,tau, max_iterations, Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<T>(residual_function,tau*tau*tau, max_iterations, Gauss<double>, bounds, subdivisions);
 			if (data.empty())
 			{
 				for(int j = 0; j < equations_number; j++)
@@ -115,7 +115,7 @@ std::vector<std::vector<T>> trapezoidal_rule_method(
 			subdivisions[j]=grid_refinement;
 		}
 		while (true){
-			auto data=newtonMethod<T>(residual_function,tau,max_iterations,Gauss<double>, bounds, subdivisions);
+			auto data=newtonMethod<T>(residual_function,tau*tau*tau,max_iterations,Gauss<double>, bounds, subdivisions);
 			if (data.empty())
 			{
 				for(int j = 0; j < equations_number; j++)
