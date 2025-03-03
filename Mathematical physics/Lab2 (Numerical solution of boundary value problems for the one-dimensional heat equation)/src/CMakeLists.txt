@@ -3,4 +3,5 @@ project(src)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(src main.cpp)
+add_executable(src main.cpp
+        heat_1d_eq_spatial_k.h)
