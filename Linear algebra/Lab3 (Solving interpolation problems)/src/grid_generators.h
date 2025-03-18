@@ -53,8 +53,8 @@ std::vector<std::pair<T, T>> generate_uniform_grid(
 	std::vector<std::pair<T, T>> points;
 	points.reserve(nx * ny);
 
-	T hx = (bx - ax) / (nx);
-	T hy = (by - ay) / (ny);
+	T hx = (bx - ax) / (nx-1);
+	T hy = (by - ay) / (ny-1);
 
 	for (int i = 0; i < nx; ++i) {
 		T x = ax + i * hx;
