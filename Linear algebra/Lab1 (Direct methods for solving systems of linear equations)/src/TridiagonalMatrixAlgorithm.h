@@ -17,7 +17,7 @@ std::vector<T> TridiagonalMatrixAlgorithm(const std::vector<T>& a,
 	cp[0] = c[0] / b[0];
 	dp[0] = d[0] / b[0];
 	for (size_t i = 1; i < n; ++i) {
-		double denom = b[i] - a[i - 1] * cp[i - 1];
+		T denom = b[i] - a[i - 1] * cp[i - 1];
 		if (denom == 0.0) {
 			throw std::runtime_error("Система вырождена или плохо обусловлена.");
 		}
