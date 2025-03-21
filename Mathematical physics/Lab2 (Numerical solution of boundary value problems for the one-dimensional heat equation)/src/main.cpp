@@ -20,17 +20,61 @@ void exportData(const std::vector<std::pair<double, double>>& grid, const std::v
 			outFile << std::setprecision(16) << grid[k].first << " " << grid[k].second << " " << data[j][i] << '\n';
 			k++;
 		}
+		k=k+pass*cols;
 		j+=pass;
 	}
 
 	outFile.close();
 }
 
+double u(double x, double t, double L) {
+	const double pi_ln2 = M_PI / std::log(2);
+	double factor = 1.0 + x / L;
+	return std::pow(factor, -0.5) * std::sin(pi_ln2 * std::log(factor)) *
+		   std::exp(-t / (L * L) * (pi_ln2 * pi_ln2 + 0.25));
+}
+
+std::vector<double> error(double h, double tau, double sigma, double L, double t0, std::function<double(std::vector<double>)>  u0, std::function<double(std::vector<double>)> K, std::function<double(std::vector<double>)> initial_cond)
+{
+	auto data = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K,initial_cond, u0,false,  u0, false, tau, h, 0.5);
+ 	size_t const rows = data.size();
+	size_t const cols = data[0].size();
+	int k = 0;
+	std::vector<double> max{0,0,0,0,0};
+	for (size_t j = 0; j < rows; ++j) {
+		for (size_t i = 0; i < cols; ++i) {
+			double diff = std::abs(data[j][i]-u(i*h, j*tau, L));
+			if (diff > max[0])
+			{
+				max[0] = diff;
+				max[1] = i*h;
+				max[2] = j*tau;
+				max[3] = h;
+				max[4]= tau;
+			}
+			k++;
+		}
+	}
+	return max;
+}
+
 int main()
 {
-	std::function<double(double)> const u0 = [](double t){return 300;};
-	std::function<double(double)> const u20 = [](double t){return 300;};
-	std::function<double(double, double, double)> const P4 = [](double t, double Q, double t0) {
+	std::function<double(std::vector<double>)> u0 = [](std::vector<double> data){return 0.0;};
+	std::function<double(std::vector<double>)> const P = [](std::vector<double> data){return 1;};
+	std::function<double(std::vector<double>)> const P1 = [](std::vector<double> data) {
+		double t = data[0];
+		double Q = data[1];
+		double t0 = data[2];
+		if (0 <= t && t <= t0) {
+			return Q;
+		}
+		return 0.0;
+	};
+	std::function<double(std::vector<double>)> const P4 = [](std::vector<double> data) {
+		double t = data[0];
+		double Q = data[1];
+		double t0 = data[2];
 		if (0 <= t && t <= 0.5 * t0) {
 			return 2 * Q * t;
 		}
@@ -39,10 +83,36 @@ int main()
 		}
 		return 0.0;
 	};
-	std::function<double(double, double, double)> const initial_cond = [](double x, double u0, double l) {
+	// std::function<double(std::vector<double>)> const P1 = [](std::vector<double> data) {
+	// 	return 1.0;
+	// };
+	std::function<double(std::vector<double>)> const initial_cond = [](std::vector<double> data) {
+		double x = data[0];
+		double l = data[1];
+		double u0 = data[2];
 		return u0 + x*(l-x);
 	};
-	std::function<double(double, double, double, double, double, double)> const K = [](double x, double x1, double x2, double k1, double k2, double L) {
+	std::function<double(std::vector<double>)> const initial_cond0 = [](std::vector<double> data) {
+		return 0;
+	};
+	std::function<double(std::vector<double>)> const initial_cond_L = [](std::vector<double> data) {
+		double x = data[0];
+		double L = data[1];
+		return std::pow(1.0 + x / L, -0.5) *
+		   std::sin((M_PI / std::log(2.0)) * std::log(1.0 + x / L));
+	};
+	std::function<double(std::vector<double>)> const K_L = [](std::vector<double> data) {
+		double x = data[0];
+		double L = data[1];
+		return std::pow(1.0 + x / L, 2);
+	};
+	std::function<double(std::vector<double>)> const K = [](std::vector<double> data) {
+		double x = data[0];
+		double x1 = data[1];
+		double x2 = data[2];
+		double k1 = data[3];
+		double k2 = data[4];
+		double L = data[5];
 		if (0 <= x && x <= x1) {
 			return k1;
 		}
@@ -55,18 +125,41 @@ int main()
 		std::cerr << "Function K(x) out of range!" << std::endl;
 		return 0.0;
 	};
-	std::function<double(double, double, double, double, double, double)> const K1 = [](double x, double x1, double x2, double k1, double k2, double L) {
-		return 5000;
+	std::function<double(std::vector<double>)> const K1 = [](std::vector<double> data) {
+		return 500;
 	};
-	double tau=10;
-	double h=0.5;
-	double t0{100000.0}, L{10.0};
-	auto sol = heat_eq_spatial<double>(7800, 460, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 300.0, K,initial_cond, u0, u0, tau, h, 1.0);
+
+	double tau=0.001;
+	double h=0.1;
+	double t0{10.0}, L{10.0};
+
+	// auto sol0 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K_L,initial_cond_L, u0,false,  u0, false, tau, h, 1.0);
 	auto grid = generate_uniform_grid<double>(0, t0, t0/tau+1, 0, L, L/h+1);
-	exportData(grid, sol, 5, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test.txt");
-	for (auto &x : sol)
+	// exportData(grid, sol0, 10, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test0.txt");
+	auto sol5 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K_L,initial_cond_L, u0,false,  u0, false, tau, h, 0.5);
+	exportData(grid, sol5, 10, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test5.txt");
+	// auto sol1 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K_L,initial_cond_L, u0,false,  u0, false, tau, h, 1.0);
+	// exportData(grid, sol1, 10, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test1.txt");
+
+	// auto sol8 = heat_eq_spatial<double>(0.25, 2, 1.5, 0.1, 0.4, 0.5, 10.0, t0, L, 0.2, K,u0, u0,false,  P4, true, tau, h, 1.0);
+	// auto grid = generate_uniform_grid<double>(0, t0, t0/tau+1, 0, L, L/h+1);
+	// exportData(grid, sol8, 10, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test21.txt");
+	// for (auto &x : sol)
+	// {
+	// 	std::cout << x << std::endl;
+	// }
+	std::ofstream outFile("/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/err.txt");
+	for (int i=2; i<40 ; i++)
 	{
-		std::cout << x << std::endl;
+		auto err = error(h, tau, 0.5, L, t0, u0, K_L, initial_cond_L);
+		for (auto elem : err)
+		{
+			outFile << elem << ' ';
+		}
+		outFile << '\n';
+		std::cout << h << '\n';
+		h = 1.0/(i*2.0);
 	}
+	outFile.close();
 	return 0;
 }
