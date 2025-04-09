@@ -87,3 +87,14 @@ jobs:
     - name: Test Lab1 (Mathematical physics)
       working-directory: "Mathematical physics/Lab1 (Numerical methods for solving ordinary differential equations)/build"
       run: ctest -C ${{env.BUILD_TYPE}}
+
+# Сборка проекта Lab2
+    - name: Configure CMake for Lab2 (Mathematical physics)
+      run: cmake -S "Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/src" -B "Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/build" -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build Lab2 (Mathematical physics)
+      run: cmake --build "Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/build" --config ${{env.BUILD_TYPE}}
+
+    - name: Test Lab2 (Mathematical physics)
+      working-directory: "Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/build"
+      run: ctest -C ${{env.BUILD_TYPE}}
