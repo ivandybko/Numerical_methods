@@ -17,7 +17,7 @@ void exportData(const std::vector<std::pair<double, double>>& grid, const std::v
 	int k = 0;
 	for (size_t j = 0; j < rows; ++j) {
 		for (size_t i = 0; i < cols; ++i) {
-			outFile << std::setprecision(16) << grid[k].first << " " << grid[k].second << " " << data[j][i] << '\n';
+			outFile << std::setprecision(20) << grid[k].first << " " << grid[k].second << " " << data[j][i] << '\n';
 			k++;
 		}
 		k=k+pass*cols;
@@ -57,7 +57,7 @@ std::vector<double> error(double h, double tau, double sigma, double L, double t
 	}
 	return max;
 }
-std::function<double(std::vector<double>)> u0 = [](std::vector<double> data){return 0.0;};
+std::function<double(std::vector<double>)> u0 = [](std::vector<double> data){return 0.2;};
 std::function<double(std::vector<double>)> u2 = [](std::vector<double> data){return 10.0;};
 std::function<double(std::vector<double>)> const P = [](std::vector<double> data){return 0.0;};
 std::function<double(std::vector<double>)> const P1 = [](std::vector<double> data) {
@@ -91,8 +91,8 @@ std::function<double(std::vector<double>)> const initial_cond = [](std::vector<d
 	return u0 + x*(l-x);
 };
 std::function<double(std::vector<double>)> const initial_cond0 = [](std::vector<double> data) {
-	return data[0];
-	// return 0.0;
+	// return data[0];
+	return 0.2;
 };
 std::function<double(std::vector<double>)> const initial_cond_L = [](std::vector<double> data) {
 	double x = data[0];
@@ -153,12 +153,12 @@ int main()
 
 
 	double tau=0.01;
-	double h=0.2;
-	double t0{1.0}, L{10.0};
+	double h=0.01;
+	double t0{0.5}, L{1.0};
 
-	auto sol0 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K1,initial_cond0, P,true,  P, true, tau, h, 1.0);
+	auto sol0 = heat_eq_spatial<double>(0.25, 2, 2, 0.5, 0.5, 2.0/3.0, 10.0, t0, L, 0.2, K,initial_cond0, initial_cond0,false,  P4, true, tau, h, 0.5);
 	auto grid = generate_uniform_grid<double>(0, t0, t0/tau+1, 0, L, L/h+1);
-	exportData(grid, sol0, 0, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test0.txt");
+	exportData(grid, sol0, 24, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test21.txt");
 	// auto sol5 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K_L,initial_cond_L, u0,false,  u0, false, tau, h, 0.5);
 	// exportData(grid, sol5, 10, "/Users/ivandybko/Projects/Numerical_methods/Mathematical physics/Lab2 (Numerical solution of boundary value problems for the one-dimensional heat equation)/data/test5.txt");
 	// auto sol1 = heat_eq_spatial<double>(1, 1, 1.0, 0.1, 0.5, 2.0/3.0, 10.0, t0, L, 0.0, K_L,initial_cond_L, u0,false,  u0, false, tau, h, 1.0);
