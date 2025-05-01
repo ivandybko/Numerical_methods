@@ -211,36 +211,45 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 				solution[t][x1][x2] = u[x2];
 			}
 		}
-		if (left.is_flux){
-			// solution[t][0][0] = left.func(0);
-			// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
-			// for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-			// 	solution[t][0][x2] = (solution[t-1][0][x2]/tau + 2*left.func(x2*h2)/h1);
-			// }
-			for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-				// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
-				solution[t][0][x2] = u_half[0][x2];
-			}
+		// if (left.is_flux){
+		// 	// solution[t][0][0] = left.func(0);
+		// 	// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
+		// 	// for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
+		// 	// 	solution[t][0][x2] = (solution[t-1][0][x2]/tau + 2*left.func(x2*h2)/h1);
+		// 	// }
+		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
+		// 		// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
+		// 		solution[t][0][x2] = u_half[0][x2];
+		// 	}
+		// }
+		// else{
+		// 	// solution[t][0][0] = left.func(0);
+		// 	// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
+		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
+		// 		solution[t][0][x2] = left.func(x2*h2);
+		// 	}
+		// }
+		// if (right.is_flux){
+		// 	// solution[t][num_points_in_space_1-1][0] = right.func(0);
+		// 	// solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
+		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
+		// 		// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
+		// 		solution[t][num_points_in_space_1-1][x2] = u_half[num_points_in_space_1-1][x2];
+		// 	}
+		// }
+		// else{
+		// 	solution[t][num_points_in_space_1-1][0] = right.func(0);
+		// 	solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
+		// }
+		for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
+			// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
+			solution[t][0][x2] = u_half[0][x2];
+			solution[t][num_points_in_space_1-1][x2] = u_half[num_points_in_space_1-1][x2];
 		}
-		else{
-			// solution[t][0][0] = left.func(0);
-			// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
-			for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-				solution[t][0][x2] = left.func(x2*h2);
-			}
-		}
-		if (right.is_flux){
-			// solution[t][num_points_in_space_1-1][0] = right.func(0);
-			// solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
-			for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-				// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
-				solution[t][num_points_in_space_1-1][x2] = u_half[num_points_in_space_1-1][x2];
-			}
-		}
-		else{
-			solution[t][num_points_in_space_1-1][0] = right.func(0);
-			solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
-		}
+		solution[t][0][0] = (solution[t][1][0] + solution[t][0][1]) - solution[t][1][1];
+		solution[t][num_points_in_space_1-1][0] = (solution[t][num_points_in_space_1 - 2][0] + solution[t][num_points_in_space_1-1][1]) - solution[t][num_points_in_space_1-2][1];
+		solution[t][0][num_points_in_space_2-1] = (solution[t][1][num_points_in_space_2-1] + solution[t][0][num_points_in_space_2-2]) - solution[t][1][num_points_in_space_2-2];
+		solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = (solution[t][num_points_in_space_1 - 2][num_points_in_space_2-1] + solution[t][num_points_in_space_1-1][num_points_in_space_2-1 - 1]) - solution[t][num_points_in_space_1-2][num_points_in_space_2-2];
 		// transpose(solution[t]);
 
 		// std::cout << "sol" << std::endl;
