@@ -6,33 +6,6 @@
 
 
 template <typename T>
-void printTridiagonalMatrix(const std::vector<T>& a,
-						   const std::vector<T>& b,
-						   const std::vector<T>& c) {
-	size_t n = b.size(); // Размер матрицы n x n
-
-	for (size_t i = 0; i < n; ++i) {
-		std::cout << "{ ";
-		for (size_t j = 0; j < n; ++j) {
-			if (j == i) {
-				// Главная диагональ
-				std::cout << b[i] << ", ";
-			} else if (j == i - 1 && i > 0) {
-				// Поддиагональ (нижняя)
-				std::cout << a[i - 1] << ", ";
-			} else if (j == i + 1 && i < n - 1) {
-				// Наддиагональ (верхняя)
-				std::cout << c[i] << ", ";
-			} else {
-				// Вне диагоналей
-				std::cout << "0, ";
-			}
-		}
-		std::cout << " }," << std::endl;
-	}
-}
-
-template <typename T>
 struct BoundaryCondition {
 	std::function<T(T)> func;
 	bool is_flux;
@@ -80,10 +53,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 		if (bottom.is_flux)
 		{
 			solution[0][i][0] = solution[0][i][1] - h2 * bottom.func(i*h1);
-
-			// C_2[num_points_in_space_2-1] = - 2.0/(h2*h2);
-			// A_2[num_points_in_space_2-2] = 2.0/(h2*h2);
-			// F_2[num_points_in_space_2-1] = solution[t-1][i][num_points_in_space_2-1]/tau - 2*bottom.func(i*h1)/h2;
 		}
 		else
 		{
@@ -97,7 +66,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 		{
 			if (bottom.is_flux)
 			{
-				// u_half[0][i] = (solution[t-1][i][0]*h2/tau + bottom.func(i*h1)) / (h2 / tau + 1.0/h2);
 				u_half[0][i] = solution[t-1][i][0]/tau + bottom.func(i*h1)/h2;
 			}
 			else
@@ -110,15 +78,8 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 			auto j=x2;
 			if (left.is_flux)
 			{
-				// C_1[0] = - 2.0/(h1*h1);
-				// C_1[0] = 2.0/(h1*h1);
 				B_1[0] =  2.0/(h1*h1);
-				// C_1[0] = -(1.0 / tau + 2.0 / (h1 * h1));
 				F_1[0] = -(solution[t-1][0][j]/tau + 2*left.func(j*h2)/h1);
-				// F_1[0] = 2*left.func(j*h2)/h1;
-				// B_1[0] =0;
-				// B_1[0] = 1.0/(h1*h1 /tau + 1);
-				// F_1[0] = -(solution[t-t1][0][j] * h1 /tau + left.func(j*h2))/ (h1 / tau + 1.0/h1);
 			}
 			else
 			{
@@ -129,13 +90,8 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 			}
 			if (right.is_flux)
 			{
-				// C_1[num_points_in_space_1-1] = - 2.0/(h1*h1);
 				A_1[num_points_in_space_1-2] = 2.0/(h1*h1);
-				// C_1[num_points_in_space_1 - 1] = -(1.0 / tau + 2.0 / (h1 * h1));
 				F_1[num_points_in_space_1-1] = -(solution[t-1][num_points_in_space_1-1][j]/tau + 2*right.func(j*h2)/h1);
-				// A_1[num_points_in_space_1-2] = 0;
-				// A_1[num_points_in_space_1-2] = 1.0/(h1*h1 /tau + 1);
-				// F_1[num_points_in_space_1-1] = -(solution[t-1][num_points_in_space_1-1][j] * h1 /tau + right.func(j*h2))/ (h1 / tau + 1.0/h1);
 			}
 			else
 			{
@@ -148,8 +104,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 			{
 				F_1[i] = - 2.0/tau * solution[t-1][i][x2] - (solution[t-1][i][x2-1] - 2*solution[t-1][i][x2] + solution[t-1][i][x2+1]) / (h2 * h2) + power_density(i * h1, x2 * h2);
 			}
-			// printTridiagonalMatrix(A_1, C_1,B_1);
-			// std::cout << F_1 << std::endl;
 			u_half.push_back(TridiagonalMatrixAlgorithm(A_1, C_1, B_1, F_1));
 		}
 		u_half.push_back(std::vector<T>(num_points_in_space_1, 0));
@@ -157,7 +111,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 		{
 			if (top.is_flux)
 			{
-				// u_half[num_points_in_space_2-1][i] = (solution[t-1][i][num_points_in_space_2-1]*h2/tau + top.func(i*h1)) / (h2 / tau + 1.0/h2);
 				u_half[num_points_in_space_2-1][i] = solution[t-1][i][num_points_in_space_2-1]/tau + 2*top.func(i*h1)/h2;
 			}
 			else
@@ -165,38 +118,21 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 				u_half[num_points_in_space_2-1][i] = top.func(i*h1);
 			}
 		}
-		// std::cout << t << std::endl;
-		// for (auto element : u_half)
-		// {
-		// 	std::cout << element << std::endl;
-		// }
 		transpose(u_half);
 		for (size_t x1 = 1; x1 < num_points_in_space_1-1; x1++)
 		{
 			auto i=x1;
 			if (bottom.is_flux) {
 				B_2[0] = 2.0/(h2*h2);
-				// C_2[0] = 1.0 / tau + 2.0 / (h2 * h2);
-				// C_2[0] = -2.0/tau - 2.0/(h2*h2);
 				F_2[0] = -(solution[t-1][i][0]/tau + 2*bottom.func(i*h1)/h2);
-				// B_2[0] = 0;
-				// B_2[0] =  -1.0/(h2*h2 / tau + 1);
-				// F_2[0] = (solution[t-1][i][0]*h2/tau + bottom.func(i*h1)) / (h2 / tau + 1.0/h2);
 			} else {
 				B_2[0] = 0;
 				C_2[0] = 1;
 				F_2[0] = bottom.func(i*h1);
 			}
-			// Для x2 = Y (top)
 			if (top.is_flux) {
 				A_2[num_points_in_space_2-2] = 2.0/(h2*h2);
-				// C_2[num_points_in_space_2-1] = 1.0/tau + 2.0/(h2*h2);
-				// A_2[num_points_in_space_2-2] = 0;
-				// A_2[num_points_in_space_2-2] = -1.0/(h2*h2 / tau + 1);
-				// C_2[num_points_in_space_2-1] = -2.0/tau - 2.0/(h2*h2);
 				F_2[num_points_in_space_2-1] = -(solution[t-1][i][num_points_in_space_2-1]/tau + 2*top.func(i*h1)/ h2);
-
-				// F_2[num_points_in_space_2-1] = (solution[t-1][i][num_points_in_space_2-1]*h2/tau + top.func(i*h1)) / (h2 / tau + 1.0/h2);
 			} else {
 				A_2[num_points_in_space_2-2] = 0;
 				C_2[num_points_in_space_2-1] = 1;
@@ -211,36 +147,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 				solution[t][x1][x2] = u[x2];
 			}
 		}
-		// if (left.is_flux){
-		// 	// solution[t][0][0] = left.func(0);
-		// 	// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
-		// 	// for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-		// 	// 	solution[t][0][x2] = (solution[t-1][0][x2]/tau + 2*left.func(x2*h2)/h1);
-		// 	// }
-		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-		// 		// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
-		// 		solution[t][0][x2] = u_half[0][x2];
-		// 	}
-		// }
-		// else{
-		// 	// solution[t][0][0] = left.func(0);
-		// 	// solution[t][0][num_points_in_space_2-1] = left.func(num_points_in_space_2*h2);
-		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-		// 		solution[t][0][x2] = left.func(x2*h2);
-		// 	}
-		// }
-		// if (right.is_flux){
-		// 	// solution[t][num_points_in_space_1-1][0] = right.func(0);
-		// 	// solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
-		// 	for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
-		// 		// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
-		// 		solution[t][num_points_in_space_1-1][x2] = u_half[num_points_in_space_1-1][x2];
-		// 	}
-		// }
-		// else{
-		// 	solution[t][num_points_in_space_1-1][0] = right.func(0);
-		// 	solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = right.func(num_points_in_space_2*h2);
-		// }
 		for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
 			// solution[t][num_points_in_space_1-1][x2] = (solution[t-1][num_points_in_space_1-1][x2]/tau - 2*right.func(x2*h2)/h1);
 			solution[t][0][x2] = u_half[0][x2];
@@ -250,13 +156,6 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 		solution[t][num_points_in_space_1-1][0] = (solution[t][num_points_in_space_1 - 2][0] + solution[t][num_points_in_space_1-1][1]) - solution[t][num_points_in_space_1-2][1];
 		solution[t][0][num_points_in_space_2-1] = (solution[t][1][num_points_in_space_2-1] + solution[t][0][num_points_in_space_2-2]) - solution[t][1][num_points_in_space_2-2];
 		solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = solution[t][num_points_in_space_1-1][num_points_in_space_2-1] = (solution[t][num_points_in_space_1 - 2][num_points_in_space_2-1] + solution[t][num_points_in_space_1-1][num_points_in_space_2-1 - 1]) - solution[t][num_points_in_space_1-2][num_points_in_space_2-2];
-		// transpose(solution[t]);
-
-		// std::cout << "sol" << std::endl;
-		// for (auto element : solution[t])
-		// {
-		// 	std::cout << element << std::endl;
-		// }
 	}
 	return solution;
 };
