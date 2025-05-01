@@ -55,13 +55,13 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 	for (size_t j = 0; j < num_points_in_space_2; ++j)
 	{
 		if (left.is_flux){
-			// solution[0][0][j] = (solution[t-1][0][j]/tau - 2*left.func(j*h2)/h1);
+			solution[0][0][j] = - 2*left.func(j*h2)/h1;
 		}
 		else{
 			solution[0][0][j] = left.func(j*h2);
 		}
 		if (right.is_flux){
-
+			solution[0][num_points_in_space_1-1][j] = -2*right.func(j*h2)/h1;
 		}
 		else{
 			solution[0][num_points_in_space_1-1][j] = right.func(j*h2);
@@ -118,7 +118,7 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 				// F_1[0] = 2*left.func(j*h2)/h1;
 				// B_1[0] =0;
 				// B_1[0] = 1.0/(h1*h1 /tau + 1);
-				// F_1[0] = (solution[t-1][0][j] * h1 /tau + left.func(j*h2))/ (h1 / tau + 1.0/h1);
+				// F_1[0] = -(solution[t-t1][0][j] * h1 /tau + left.func(j*h2))/ (h1 / tau + 1.0/h1);
 			}
 			else
 			{
@@ -146,7 +146,7 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 			}
 			for (size_t i = 1; i < F_1.size()-1; i++)
 			{
-				F_1[i] = - 2.0/tau * solution[t-1][i][x2] - (solution[t-1][i][x2-1] - 2*solution[t-1][i][x2] + solution[t-1][i][x2+1]) / (h2 * h2) - power_density(i * h1, x2 * h2);
+				F_1[i] = - 2.0/tau * solution[t-1][i][x2] - (solution[t-1][i][x2-1] - 2*solution[t-1][i][x2] + solution[t-1][i][x2+1]) / (h2 * h2) + power_density(i * h1, x2 * h2);
 			}
 			// printTridiagonalMatrix(A_1, C_1,B_1);
 			// std::cout << F_1 << std::endl;
@@ -204,7 +204,7 @@ std::vector<std::vector<std::vector<T>>> poisson_equation_2d(std::pair<T, T> upp
 			}
 			for (size_t j = 1; j < F_2.size()-1; j++)
 			{
-				F_2[j] = - 2.0/tau * u_half[x1][j] - (u_half[x1-1][j] - 2*u_half[x1][j] + u_half[x1+1][j]) / (h1 * h1) - power_density(x1 * h1, j * h2);
+				F_2[j] = - 2.0/tau * u_half[x1][j] - (u_half[x1-1][j] - 2*u_half[x1][j] + u_half[x1+1][j]) / (h1 * h1) + power_density(x1 * h1, j * h2);
 			}
 			auto u = TridiagonalMatrixAlgorithm(A_2, C_2, B_2, F_2);
 			for (size_t x2 = 0; x2 < num_points_in_space_2; x2++){
